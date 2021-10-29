@@ -9,6 +9,6 @@ on:
         default: 'doge'
 jobs:
   job1:
-    uses: ./.github/actions/hello.yml
+    uses: ${{ github.repository }}/.github/workflows/hello.yml@v1
     with:
       who-to-greet: ${{ github.event.inputs.who-to-greet }}
