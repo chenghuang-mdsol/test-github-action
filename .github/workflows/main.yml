@@ -19,5 +19,5 @@ jobs:
     steps:
       - run: |
           echo "This is job 2"
-          Get-Content $Env:GITHUB_ENV
+          cat $GITHUB_ENV
 
