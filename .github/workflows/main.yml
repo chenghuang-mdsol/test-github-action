@@ -8,6 +8,8 @@ on:
         required: true
         default: 'doge'
 jobs:
+  env:
+    env0: abc
   job1:
     name: Job1
     uses: chenghuang-mdsol/test-github-action/.github/workflows/hello.yml@master
@@ -16,6 +18,8 @@ jobs:
   job2:
     name: Job2
     runs-on: ubuntu-latest
+    env:
+      env1: def
     steps:
       - run: |
           echo "This is job 2"
