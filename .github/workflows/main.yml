@@ -9,6 +9,6 @@ on:
         default: 'doge'
 jobs:
   job1:
-    uses: chenghuang-mdsol/test-github-action/.github/workflows/hello.yml@v1
+    uses: chenghuang-mdsol/test-github-action/.github/workflows/hello.yml@main
     with:
       who-to-greet: ${{ github.event.inputs.who-to-greet }}
