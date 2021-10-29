@@ -10,7 +10,7 @@ on:
 jobs:
   job1:
     name: Job1
-    uses: chenghuang-mdsol/test-github-action/.github/workflows/hello.yml
+    uses: chenghuang-mdsol/test-github-action/.github/workflows/hello.yml@master
     with:
       who-to-greet: ${{ github.event.inputs.who-to-greet }}
   job2:
