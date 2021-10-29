@@ -15,7 +15,7 @@ jobs:
       who-to-greet: ${{ github.event.inputs.who-to-greet }}
   job2:
     name: Job2
-    runs-on: ubuntu-linux
+    runs-on: ubuntu-latest
     steps:
       - run: echo "This is job 2"
 
