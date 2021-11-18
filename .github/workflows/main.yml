@@ -12,16 +12,12 @@ env:
 jobs:
   job1:
     name: Job1
-    uses: chenghuang-mdsol/test-github-action/.github/workflows/hello.yml@master
-    with:
-      who-to-greet: ${{ github.event.inputs.who-to-greet }}
-  job2:
-    name: Job2
-    runs-on: ubuntu-latest
-    env:
-      env1: def
-    steps:
-      - run: |
-          echo "This is job 2"
-          cat $GITHUB_ENV
+    use: Bhacaz/checkout-files
+      with:
+        files: cd/functions.psm1
+        token: ${{ secrets.GITHUB_TOKEN }}
+    run: |
+      ls -alF
+      ls cd -alF
+
 
