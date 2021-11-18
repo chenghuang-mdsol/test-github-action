@@ -12,12 +12,14 @@ env:
 jobs:
   job1:
     name: Job1
-    - use: Bhacaz/checkout-files
-      with:
-        files: cd/functions.psm1
-        token: ${{ secrets.GITHUB_TOKEN }}
-    - run: |
-        ls -alF
-        ls cd -alF
+    runs-on: ubuntu-latest
+    steps:
+      - use: Bhacaz/checkout-files
+        with:
+          files: cd/functions.psm1
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          ls -alF
+          ls cd -alF
 
 
