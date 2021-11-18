@@ -14,7 +14,7 @@ jobs:
     name: Job1
     runs-on: ubuntu-latest
     steps:
-      - use: Bhacaz/checkout-files
+      - uses: Bhacaz/checkout-files
         with:
           files: cd/functions.psm1
           token: ${{ secrets.GITHUB_TOKEN }}
