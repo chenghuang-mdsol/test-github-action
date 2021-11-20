@@ -22,6 +22,7 @@ jobs:
         uses: ./.github/actions/gitapi-checkout
         with:
           out-directory: "test-out"
+          github-token: ${{ secrets.PERSONAL_TOKEN }}
           paths: |
             cd
             scripts

@@ -8,7 +8,9 @@ inputs:
   paths:
     description: Checkout files/folders
     required: true
-
+  github-token:
+    description: Github token
+    required: true
 runs:
   using: "composite"
   steps:
@@ -18,4 +20,4 @@ runs:
       run: |
         Import-Module ${{ github.action_path }}/functions.psm1
         $files = "${{ inputs.paths }}" -split '\r?\n'
-        Get-files -Repository "mdsol/RaveEDC" -Paths $files -OutDirectory "${{ inputs.out-directory }}" -GithubToken ${{ secrets.PERSONAL_TOKEN }}
+        Get-files -Repository "mdsol/RaveEDC" -Paths $files -OutDirectory "${{ inputs.out-directory }}" -GithubToken ${{ inputs.github-token }}
