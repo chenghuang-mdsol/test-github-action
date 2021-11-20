@@ -19,7 +19,7 @@ runs:
       shell: pwsh
       run: |
         Import-Module ${{ github.action_path }}/functions.psm1
-        $files = "${{ inputs.paths }}" -split '\r?\n'
+        $files = "${{ inputs.paths }}" -split '\r?\n' | Where-Object {-not [string]::IsNullOrWhitespace($_) }
         $files
         $files.Count
         Get-files -Repository "mdsol/RaveEDC" -Paths $files -OutDirectory "${{ inputs.out-directory }}" -GithubToken ${{ inputs.github-token }}
