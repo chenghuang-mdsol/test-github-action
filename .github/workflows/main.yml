@@ -22,7 +22,7 @@ jobs:
         uses: ./.github/actions/gitapi-checkout
         with:
           out-directory: "aa"
-          path: |
+          paths: |
             aa
             bb
             cc
