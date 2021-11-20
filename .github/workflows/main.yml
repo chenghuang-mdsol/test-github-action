@@ -17,10 +17,7 @@ jobs:
       - uses: snow-actions/sparse-checkout@v1.1.0
         with:
           patterns: |
-            cd
-            PIR.txt
-          path: ${{ runner.temp }}
-          ref: a0d73a2ae98412f10180f2000c0ba5f28e82f7c7
+            .github
       - name: Git Api checkout
         uses: ./.github/actions/gitapi-checkout
         with:
