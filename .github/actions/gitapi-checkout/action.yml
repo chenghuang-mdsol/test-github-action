@@ -17,5 +17,5 @@ runs:
       shell: pwsh
       run: |
         Import-Module ${{ github.action_path }}/functions.psm1
-        $files = "${{ inputs.aws-access-key-id }}" -split '\r?\n'
+        $files = "${{ inputs.paths }}" -split '\r?\n'
         $files
