@@ -16,6 +16,8 @@ runs:
   steps:
     - name: Check the manifest file if cyclops tags exist
       id: check-manifest
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
       shell: pwsh
       run: |
         Import-Module ${{ github.action_path }}/functions.psm1
