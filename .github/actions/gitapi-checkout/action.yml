@@ -18,4 +18,4 @@ runs:
       run: |
         Import-Module ${{ github.action_path }}/functions.psm1
         $files = "${{ inputs.paths }}" -split '\r?\n'
-        $files
+        Get-files -Repository "mdsol/RaveEDC" -Paths $files -OutDirectory "${{ inputs.out-directory }}" -GithubToken ${{ secrets.PERSONAL_TOKEN }}

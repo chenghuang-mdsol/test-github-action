@@ -21,14 +21,11 @@ jobs:
       - name: Git Api checkout
         uses: ./.github/actions/gitapi-checkout
         with:
-          out-directory: "aa"
+          out-directory: "test-out"
           paths: |
-            aa
-            bb
-            cc
-            dd
-            eee
-            ffff
-
+            cd
+            scripts
+            docker
+      - run: ls test-out
 
 
