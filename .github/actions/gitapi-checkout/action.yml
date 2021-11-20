@@ -1,0 +1,21 @@
+name: 'Checkout Files by Github Api'
+description: "Checkout Files by Github Api"
+inputs:
+  out-directory:
+    description: Out directory
+    required: false
+    default: "."
+  paths:
+    description: Checkout files/folders
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Check the manifest file if cyclops tags exist
+      id: check-manifest
+      shell: pwsh
+      run: |
+        Import-Module ${{ github.action_path }}/functions.psm1
+        $files = "${{ inputs.aws-access-key-id }}" -split '\r?\n'
+        $files

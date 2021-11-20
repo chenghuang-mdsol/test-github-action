@@ -3,10 +3,10 @@ name: Build
 on:
   workflow_dispatch:
     inputs:
-      who-to-greet:
-        description: 'Who to greet'
-        required: true
-        default: 'doge'
+      ref:
+        description: 'ref'
+        required: false
+        default: ''
 env:
   env0: abc
 jobs:
@@ -21,10 +21,17 @@ jobs:
             PIR.txt
           path: ${{ runner.temp }}
           ref: a0d73a2ae98412f10180f2000c0ba5f28e82f7c7
-      - run: |
-          ls -alF
-          ls cd -alF
-        working-directory: ${{ runner.temp}}
+      - name: Git Api checkout
+        uses: ./.github/actions/gitapi-checkout
+        with:
+          out-directory: "aa"
+          path: |
+            aa
+            bb
+            cc
+            dd
+            eee
+            ffff
 
 
 
