@@ -7,8 +7,20 @@ on:
         description: 'ref'
         required: false
         default: ''
-      test-param:
-        description: 'test parameter'
+      gambit-deploy-tag:
+        description: "Gambit: <url> | <template>, this overrides manifest json"
+        required: false
+        default: ''
+      dss-deploy-tag:
+        description: "DSS: <url> | <template>, this overrides manifest json"
+        required: false
+        default: ''
+      slaad-deploy-tag:
+        description: "Slaad: <url> | <template>, this overrides manifest json"
+        required: false
+        default: ''
+      rave-deploy-tag:
+        description: "Rave: <url> | <template>, this overrides manifest json"
         required: false
         default: ''
 
@@ -23,7 +35,7 @@ jobs:
             .github
       - run: |
           $json = (Get-Content -Raw -Path $Env:GITHUB_EVENT_PATH  | ConvertFrom-Json)
-          $json
+          Get-Content -Raw -Path $Env:GITHUB_EVENT_PATH
         shell: pwsh
 
 
