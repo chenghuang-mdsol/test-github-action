@@ -13,8 +13,6 @@ inputs:
     required: true
 runs:
   using: "composite"
-  env:
-    abc: abc
   steps:
     - name: Check the manifest file if cyclops tags exist
       id: check-manifest
