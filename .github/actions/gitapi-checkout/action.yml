@@ -13,6 +13,8 @@ inputs:
     required: true
 runs:
   using: "composite"
+  env:
+    abc: abc
   steps:
     - name: Check the manifest file if cyclops tags exist
       id: check-manifest
@@ -25,3 +27,4 @@ runs:
         $files
         $files.Count
         Get-files -Repository "mdsol/RaveEDC" -Paths $files -OutDirectory "${{ inputs.out-directory }}" -GithubToken ${{ inputs.github-token }}
+        Write-Host "env:abc == $Env:abc"
