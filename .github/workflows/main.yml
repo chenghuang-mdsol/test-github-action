@@ -7,8 +7,11 @@ on:
         description: 'ref'
         required: false
         default: ''
-env:
-  env0: abc
+      test-param:
+        description: 'test parameter'
+        required: false
+        default: ''
+
 jobs:
   job1:
     name: Job1
@@ -18,15 +21,9 @@ jobs:
         with:
           patterns: |
             .github
-      - name: Git Api checkout
-        uses: ./.github/actions/gitapi-checkout
-        with:
-          out-directory: "test-out"
-          github-token: ${{ secrets.PERSONAL_TOKEN }}
-          paths: |
-            cd
-            scripts
-            docker
-      - run: ls test-out
+      - run: |
+          $json = (Get-Content -Raw -Path $Env:GITHUB_EVENT_PATH  | ConvertFrom-Json)
+          $json
+        shell: pwsh
 
 
