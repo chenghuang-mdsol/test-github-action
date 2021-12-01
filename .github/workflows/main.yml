@@ -23,6 +23,9 @@ on:
         description: "Rave: <url> | <template>, this overrides manifest json"
         required: false
         default: ''
+      json:
+        description: "Json"
+        default: ''
 
 jobs:
   job1:
@@ -34,8 +37,10 @@ jobs:
           patterns: |
             .github
       - run: |
-          $json = (Get-Content -Raw -Path $Env:GITHUB_EVENT_PATH  | ConvertFrom-Json)
-          Get-Content -Raw -Path $Env:GITHUB_EVENT_PATH
+          "${{ github.event.inputs.json }}" | test-json
+          $json = "${{ github.event.inputs.json }}"
+          $json = $json | ConvertFrom-Json
+          $json
         shell: pwsh
 
 
