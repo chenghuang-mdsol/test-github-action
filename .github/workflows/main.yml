@@ -37,8 +37,12 @@ jobs:
           patterns: |
             .github
       - run: |
-          "${{ github.event.inputs.json }}" | test-json
-          $json = "${{ github.event.inputs.json }}"
+          @"
+          ${{ github.event.inputs.json }}
+          "@ | test-json
+          $json = @"
+          ${{ github.event.inputs.json }}
+          "@
           $json = $json | ConvertFrom-Json
           $json
         shell: pwsh
