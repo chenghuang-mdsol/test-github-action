@@ -32,10 +32,15 @@ jobs:
     name: Job1
     runs-on: ubuntu-latest
     steps:
-      - uses: snow-actions/sparse-checkout@v1.1.0
+      - uses: ./.github/actions/gitapi-checkout
         with:
-          patterns: |
+          out-directory:
+            description: Out directory
+            required: false
+            default: "."
+          paths: |
             .github
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
           @"
           ${{ github.event.inputs.json }}
