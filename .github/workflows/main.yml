@@ -32,6 +32,20 @@ jobs:
     name: Job1
     runs-on: ubuntu-latest
     steps:
+      - name: Partial Checkout
+        run: |
+          $files = @(".github/actions/gitapi-checkout/action.yml", ".github/actions/gitapi-checkout/functions.psm1")
+          $files | ForEach-Object {
+              $ref = $Env:GITHUB_REF -replace 'refs/heads/', ''
+              $api = "https://api.github.com/repos/$Env:GITHUB_REPOSITORY/contents/$_`?ref=$ref"
+              $url = gh api $api --jq .download_url
+              $dir = Split-Path $_
+              New-Item -Path $dir -ItemType Directory -Force | Out-Null
+              Invoke-WebRequest $url -OutFile $_
+          }
+        shell: pwsh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: ./.github/actions/gitapi-checkout
         with:
           paths: |
