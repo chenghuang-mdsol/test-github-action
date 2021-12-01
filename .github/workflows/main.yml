@@ -34,10 +34,6 @@ jobs:
     steps:
       - uses: ./.github/actions/gitapi-checkout
         with:
-          out-directory:
-            description: Out directory
-            required: false
-            default: "."
           paths: |
             .github
           github-token: ${{ secrets.GITHUB_TOKEN }}
