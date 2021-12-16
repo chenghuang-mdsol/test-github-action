@@ -1,5 +1,5 @@
 
-name: Build&#58; Build 1
+name: Build ":" Build 1
 on:
   workflow_dispatch:
     inputs:
