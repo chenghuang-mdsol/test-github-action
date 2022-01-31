@@ -60,6 +60,7 @@ jobs:
           "@
           $json = $json | ConvertFrom-Json
           $json
+          Get-ChildItem Env:
         shell: pwsh
 
 
