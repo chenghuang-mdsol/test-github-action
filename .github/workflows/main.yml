@@ -33,14 +33,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          @"
-          ${{ github.event.inputs.json }}
-          "@ | test-json
-          $json = @"
-          ${{ github.event.inputs.json }}
-          "@
-          $json = $json | ConvertFrom-Json
-          $json
           Get-ChildItem Env:
         shell: pwsh
 
