@@ -54,7 +54,7 @@ jobs:
 
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.input.targetBranch }}
+          ref: ${{ github.events.input.targetBranch }}
           clean: 'true'
           submodules: recursive
           ssh-strict: false
@@ -62,6 +62,7 @@ jobs:
           path: target
 
       - run: |
+          ls .
           Push-Location soruce
           git rev-parse --abbrev-ref HEAD
           Pop-Location
