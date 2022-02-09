@@ -24,7 +24,14 @@ on:
         - sandbox
         - distro
         - UAT
-
+      sourceBranch:
+        description: 'source branch'
+        required: true
+        default: ${{ github.ref }}
+      targetBranch:
+        description: 'source branch'
+        required: true
+        default: '' 
 jobs:
   job1:
     name: Job1
@@ -38,5 +45,27 @@ jobs:
           Write-Host "tags == ${{ github.event.inputs.tags }}"
           Write-Host "environment == ${{ github.event.inputs.environment }}"
         shell: pwsh
+      - run: |
+          Write-Host "logLevel == ${{ github.event.inputs.logLevel }}"
+          Write-Host "tags == ${{ github.event.inputs.tags }}"
+          Write-Host "environment == ${{ github.event.inputs.environment }}"
+        shell: pwsh
+
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.input.sourceBranch }}
+          clean: 'true'
+          submodules: recursive
+          ssh-strict: false
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          path: ${{ source }}
 
 
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.input.targetBranch }}
+          clean: 'true'
+          submodules: recursive
+          ssh-strict: false
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          path: ${{ source }}
