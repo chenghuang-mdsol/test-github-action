@@ -27,9 +27,9 @@ on:
       sourceBranch:
         description: 'source branch'
         required: true
-        default: ${{ github.ref }}
+        default: ''
       targetBranch:
-        description: 'source branch'
+        description: 'target branch'
         required: true
         default: '' 
 jobs:
@@ -68,4 +68,4 @@ jobs:
           submodules: recursive
           ssh-strict: false
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          path: ${{ source }}
+          path: ${{ target }}
