@@ -5,6 +5,10 @@ Last updated: 2022-02-10
 **What changed**: new table
 **Column(s)**:
 
+|Name|Old Datatype/Properties|New Datatype/Properties|
+|:--|:--|:--|
+|AuditID|\<did not exist\>|bigint NOT NULL|
+|ValueVarchar|\<did not exist\>|varchar(8000) NOT NULL| 
 
 **Hash**:\<Fill Hash/PR link here>
 ----
