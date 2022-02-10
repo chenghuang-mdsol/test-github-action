@@ -10,15 +10,19 @@ Last updated: 2022-02-10
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |AuditID|\<did not exist\>|bigint NOT NULL|
-|ValueVarchar|\<did not exist\>|varchar(8000) NOT NULL| 
+|ValueVarchar|\<did not exist\>|varchar(8000) NOT NULL|
+
 
 **Hash**:\<Fill Hash/PR link here>
 
 ----
 
 **Table**: ```ClinicalViewErrors3```
+
 **What changed**: new table
+
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |ClinicalViewsErrorId|\<did not exist\>|int IDENTITY (1, 1) NOT NULL|
@@ -27,12 +31,18 @@ Last updated: 2022-02-10
 |Save_ts|\<did not exist\>|datetime NOT NULL|
 |Sql|\<did not exist\>|nvarchar(MAX) NULL|
 |Error_message|\<did not exist\>|nvarchar(8000) NULL|
+
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 **Table**: ```eProAudit```
+
 **What changed**: new table
+
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |eProAuditId|\<did not exist\>|int IDENTITY (1, 1) NOT NULL|
@@ -43,12 +53,18 @@ Last updated: 2022-02-10
 |AuditUserId|\<did not exist\>|int NOT NULL|
 |AuditTime|\<did not exist\>|datetime2(7) NOT NULL|
 |AuditSubCategoryId|\<did not exist\>|int NOT NULL|
+
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 **Table**: ```eProAuditDetails```
+
 **What changed**: new table
+
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |eProAuditDetailsId|\<did not exist\>|int IDENTITY (1, 1) NOT NULL|
@@ -57,22 +73,34 @@ Last updated: 2022-02-10
 |SourceLocaleText|\<did not exist\>|nvarchar(MAX) NOT NULL|
 |TargetLocaleText|\<did not exist\>|nvarchar(MAX) NOT NULL|
 |IsTranslated|\<did not exist\>|bit NOT NULL|
+
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 **Table**: ```NeedsCVRefreshValueR```
+
 **What changed**: new table
+
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |NeedsCVRefresh|\<did not exist\>|tinyint NOT NULL|
 |NeedsCVRefreshValueName|\<did not exist\>|varchar(100) NOT NULL|
+
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 **Table**: ```RcmSubjectQueue```
+
 **What changed**: new table
+
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |RcmSubjectQueueID|\<did not exist\>|bigint IDENTITY (1, 1) NOT NULL|
@@ -84,12 +112,18 @@ Last updated: 2022-02-10
 |CreatedDate|\<did not exist\>|datetime NOT NULL|
 |LastAttemptDate|\<did not exist\>|datetime NOT NULL|
 |RequestByUserId|\<did not exist\>|int NOT NULL|
+
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 **Table**: ```RcmSubjectQueueLog```
+
 **What changed**: new table
+
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |RcmSubjectQueueLogID|\<did not exist\>|bigint IDENTITY (1, 1) NOT NULL|
@@ -100,12 +134,18 @@ Last updated: 2022-02-10
 |CreatedDate|\<did not exist\>|datetime NOT NULL|
 |IsSuccess|\<did not exist\>|bit NOT NULL|
 |RequestByUserId|\<did not exist\>|int NOT NULL|
+
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 **Table**: ```TSDV_BlockSubjects_Old```
+
 **What changed**: new table
+
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |SiteBlockSubjectId|\<did not exist\>|int IDENTITY (1, 1) NOT NULL|
@@ -123,12 +163,18 @@ Last updated: 2022-02-10
 |RetrospectiveRunDate|\<did not exist\>|datetime NULL|
 |IsSubjectReincluded|\<did not exist\>|bit NULL|
 |IsBackFillSlotSelected|\<did not exist\>|bit CONSTRAINT [DF__TSDV_Bloc__IsBac__2AEB3533] DEFAULT ((0)) NULL|
+
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 **Table**: ```TSDV_BlockSubjects2```
+
 **What changed**: new table
+
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |SiteBlockSubjectId|\<did not exist\>|int IDENTITY (1, 1) NOT NULL|
@@ -149,12 +195,18 @@ Last updated: 2022-02-10
 |Created|\<did not exist\>|datetime CONSTRAINT [DF_SSDV_BlockSubjects2_Created] DEFAULT (getutcdate()) NOT NULL|
 |Updated|\<did not exist\>|datetime CONSTRAINT [DF_SSDV_BlockSubjects2_Updated] DEFAULT (getutcdate()) NOT NULL|
 |IsBackFillSlotSelected|\<did not exist\>|bit CONSTRAINT [DF__TSDV_Bloc__IsBac__34749F6D] DEFAULT ((0)) NULL|
+
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 **Table**: ```TSDV_SiteBlocks_Old```
+
 **What changed**: new table
+
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |SiteBlockId|\<did not exist\>|int IDENTITY (1, 1) NOT NULL|
@@ -166,12 +218,18 @@ Last updated: 2022-02-10
 |Created|\<did not exist\>|datetime CONSTRAINT [DF_SSDV_SiteBlocks_Created] DEFAULT (getutcdate()) NOT NULL|
 |Updated|\<did not exist\>|datetime CONSTRAINT [DF_SSDV_SiteBlocks_Updated] DEFAULT (getutcdate()) NOT NULL|
 |Locked|\<did not exist\>|bit CONSTRAINT [DF__TSDV_Site__Locke__62307D25] DEFAULT ((0)) NOT NULL|
+
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 **Table**: ```TSDV_SiteBlocks2```
+
 **What changed**: new table
+
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |SiteBlockId|\<did not exist\>|int IDENTITY (1, 1) NOT NULL|
@@ -184,12 +242,18 @@ Last updated: 2022-02-10
 |Locked|\<did not exist\>|bit CONSTRAINT [DF__TSDV_Site__Locke__2EBBC617] DEFAULT ((0)) NOT NULL|
 |Created|\<did not exist\>|datetime CONSTRAINT [DF_SSDV_SiteBlocks2_Created] DEFAULT (getutcdate()) NOT NULL|
 |Updated|\<did not exist\>|datetime CONSTRAINT [DF_SSDV_SiteBlocks2_Updated] DEFAULT (getutcdate()) NOT NULL|
+
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 **Table**: ```env.DbModuleDeployments```
+
 **What changed**: new table
+
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |DbModuleDeploymentId|\<did not exist\>|int IDENTITY (1, 1) NOT NULL|
@@ -198,25 +262,37 @@ Last updated: 2022-02-10
 |StartedDate|\<did not exist\>|datetime2(7) NOT NULL|
 |CompletedDate|\<did not exist\>|datetime2(7) NULL|
 |DeploymentStatus|\<did not exist\>|varchar(25) NOT NULL|
+
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 
 **Table**: ```TSDV_BlockSubjects```
+
 **What changed**: table deleted
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 **Table**: ```TSDV_SiteBlocks```
+
 **What changed**: table deleted
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 
 
 **Table**: ```ClinicalViewProjectResults```
+
 **What changed**: new column(s)
+
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |DbModuleDeploymentId||int IDENTITY (1, 1) NOT NULL|
@@ -225,12 +301,18 @@ Last updated: 2022-02-10
 |StartedDate||datetime2(7) NOT NULL|
 |CompletedDate||datetime2(7) NULL|
 |DeploymentStatus||varchar(25) NOT NULL|
+
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 **Table**: ```CodingDictionaries```
+
 **What changed**: new column(s)
+
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |DbModuleDeploymentId||int IDENTITY (1, 1) NOT NULL|
@@ -239,12 +321,18 @@ Last updated: 2022-02-10
 |StartedDate||datetime2(7) NOT NULL|
 |CompletedDate||datetime2(7) NULL|
 |DeploymentStatus||varchar(25) NOT NULL|
+
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 **Table**: ```CodingTermContextHash```
+
 **What changed**: new column(s)
+
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |DbModuleDeploymentId||int IDENTITY (1, 1) NOT NULL|
@@ -253,12 +341,18 @@ Last updated: 2022-02-10
 |StartedDate||datetime2(7) NOT NULL|
 |CompletedDate||datetime2(7) NULL|
 |DeploymentStatus||varchar(25) NOT NULL|
+
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 **Table**: ```MigrationRun```
+
 **What changed**: new column(s)
+
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |DbModuleDeploymentId||int IDENTITY (1, 1) NOT NULL|
@@ -267,12 +361,18 @@ Last updated: 2022-02-10
 |StartedDate||datetime2(7) NOT NULL|
 |CompletedDate||datetime2(7) NULL|
 |DeploymentStatus||varchar(25) NOT NULL|
+
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 **Table**: ```Projects```
+
 **What changed**: new column(s)
+
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |DbModuleDeploymentId||int IDENTITY (1, 1) NOT NULL|
@@ -281,12 +381,18 @@ Last updated: 2022-02-10
 |StartedDate||datetime2(7) NOT NULL|
 |CompletedDate||datetime2(7) NULL|
 |DeploymentStatus||varchar(25) NOT NULL|
+
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 **Table**: ```TWBProcessingQueue```
+
 **What changed**: new column(s)
+
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |DbModuleDeploymentId||int IDENTITY (1, 1) NOT NULL|
@@ -295,6 +401,9 @@ Last updated: 2022-02-10
 |StartedDate||datetime2(7) NOT NULL|
 |CompletedDate||datetime2(7) NULL|
 |DeploymentStatus||varchar(25) NOT NULL|
+
+
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
