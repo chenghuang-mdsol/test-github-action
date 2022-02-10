@@ -2,7 +2,9 @@
 Last updated: 2022-02-10
 
 **Table**: ```AuditsExtended```
+
 **What changed**: new table
+
 **Column(s)**:
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
