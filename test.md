@@ -1,13 +1,15 @@
 ## Summary of Rave Database Schema Changes between Rave 2021.1.4 and Rave 2021.2.1 ##
 Last updated: 2022-02-10
 
-**Table**: ```AuditsExtended``` 
-**What changed**: new table 
+**Table**: ```AuditsExtended```
+**What changed**: new table
 **Column(s)**:
+
 |Name|Old Datatype/Properties|New Datatype/Properties|
 |:--|:--|:--|
 |AuditID|\<did not exist\>|bigint NOT NULL|
 |ValueVarchar|\<did not exist\>|varchar(8000) NOT NULL| 
+
 **Hash**:\<Fill Hash/PR link here>
 ----
 
