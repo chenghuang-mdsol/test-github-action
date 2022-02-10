@@ -2,7 +2,9 @@
 Last updated: 2022-02-10
 
 **Table**: ```AuditsExtended```
+
 **What changed**: new table
+
 **Column(s)**:
 
 |Name|Old Datatype/Properties|New Datatype/Properties|
@@ -11,6 +13,7 @@ Last updated: 2022-02-10
 |ValueVarchar|\<did not exist\>|varchar(8000) NOT NULL| 
 
 **Hash**:\<Fill Hash/PR link here>
+
 ----
 
 **Table**: ```ClinicalViewErrors3```
