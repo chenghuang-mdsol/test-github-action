@@ -8,6 +8,7 @@ Last updated: 2022-02-10
 |:--|:--|:--|
 |AuditID|\<did not exist\>|bigint NOT NULL|
 |ValueVarchar|\<did not exist\>|varchar(8000) NOT NULL|
+
 **Hash**:\<Fill Hash/PR link here>
 ----
 
