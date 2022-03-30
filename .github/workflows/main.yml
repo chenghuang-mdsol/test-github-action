@@ -42,7 +42,7 @@ jobs:
           Write-Host "environment == ${{ github.event.inputs.environment }}"
         shell: pwsh
 
-      - uses: .github/workflows/hello.yml
+      - uses: ./.github/workflows/hello.yml
         with:
           who-to-greet: "Mike"
 
