@@ -29,9 +29,10 @@ on:
         required: true
         default: '' 
 jobs:
-  uses: ./.github/workflows/hello.yml
-  with:
-    who-to-greet: "Mike"
+  call-workflow:
+    uses: ./.github/workflows/hello.yml
+    with:
+      who-to-greet: "Mike"
   job1:
     name: Job1
     runs-on: ubuntu-latest
