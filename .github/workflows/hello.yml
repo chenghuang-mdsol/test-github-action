@@ -13,6 +13,6 @@ jobs:
     steps:
       - name: Greet
         run: |
-          echo "Hello0! ${{ github.event.inputs.who-to-greet }} "
+          echo "Hello0! ${{ github.event.inputs.who-to-greet }}"
           echo "Hello1! ${{ inputs.who-to-greet }} "
         shell: pwsh

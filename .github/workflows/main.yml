@@ -42,6 +42,10 @@ jobs:
           Write-Host "environment == ${{ github.event.inputs.environment }}"
         shell: pwsh
 
+      - uses: actions/checkout@v2
+        with:
+          clean: 'true'
+
       - uses: ./.github/workflows/hello.yml
         with:
           who-to-greet: "Mike"
