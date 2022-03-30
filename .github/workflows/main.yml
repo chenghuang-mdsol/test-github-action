@@ -42,31 +42,8 @@ jobs:
           Write-Host "environment == ${{ github.event.inputs.environment }}"
         shell: pwsh
 
-      - uses: actions/checkout@v2
+      - uses: .github/workflows/hello.yml
         with:
-          ref: ${{ github.ref }}
-          clean: 'true'
-          submodules: recursive
-          ssh-strict: false
-          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          path: source
+          who-to-greet: "Mike"
 
 
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.inputs.targetBranch }}
-          clean: 'true'
-          submodules: recursive
-          ssh-strict: false
-          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          path: target
-
-      - run: |
-          ls .
-          Push-Location source
-          git rev-parse --abbrev-ref HEAD
-          Pop-Location
-          Push-Location target
-          git rev-parse --abbrev-ref HEAD
-          Pop-Location
-        shell: pwsh

@@ -1,5 +1,5 @@
 on:
-  workflow_call:
+  workflow_run:
     inputs:
       who-to-greet:
         description: 'who to greet'
@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Greet
-        run: echo "Hello! ${{ inputs.who-to-greet }} "
-      - name: Fail
-        run: exit 1
+        run: |
+          echo "Hello0! ${{ github.event.inputs.who-to-greet }} "
+          echo "Hello1! ${{ inputs.who-to-greet }} "
+        shell: pwsh
