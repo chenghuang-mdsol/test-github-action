@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout actions
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           repository: mdsol/rave_ci
           token: ${{ secrets.PERSONAL_TOKEN }}
