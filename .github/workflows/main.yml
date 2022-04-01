@@ -34,22 +34,30 @@ jobs:
     with:
       who-to-greet: "Mike"
   job1:
-    name: Job1
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          Get-ChildItem Env:
-        shell: pwsh
-      - run: |
-          Write-Host "logLevel == ${{ github.event.inputs.logLevel }}"
-          Write-Host "tags == ${{ github.event.inputs.tags }}"
-          Write-Host "environment == ${{ github.event.inputs.environment }}"
-        shell: pwsh
+    api-checkout:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout actions
+          uses: actions/checkout@v3
+          with:
+            repository: mdsol/rave_ci
+            token: ${{ secrets.PERSONAL_TOKEN }}
+            path: .github/rave_ci
+            ref: api-checkout
 
-      # - uses: actions/checkout@v2
-      #   with:
-      #     clean: 'true'
-
+        - name: api checkout
+          uses: ./.github/rave_ci/actions/update-cyclops2-databag
+          with:
+            repository: mdsol/RaveEDC
+            out-directory: ${{ runner.temp }}
+            paths: |
+              cd/cyclops
+              cd/github_functions.psm1
+              cd/manifests_functions.psm1
+              manifests
+              pir
+            refs: develop
+            github-token: ${{ secrets.PERSONAL_TOKEN }}
 
 
 
