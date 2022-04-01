@@ -27,9 +27,10 @@ jobs:
           repository: mdsol/rave_ci
           token: ${{ secrets.PERSONAL_TOKEN }}
           path: .github/rave_ci
+          ref: api-checkout
 
       - name: api checkout
-        uses: mdsol/rave_ci/actions/update-cyclops2-databag@api-checkout
+        uses: ./.github/rave_ci/actions/update-cyclops2-databag
         with:
           repository: mdsol/RaveEDC
           out-directory: ${{ runner.temp }}
