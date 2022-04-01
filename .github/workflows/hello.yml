@@ -17,3 +17,19 @@ jobs:
           echo "Hello0! ${{ github.event.inputs.who-to-greet }}"
           echo "Hello1! ${{ inputs.who-to-greet }} "
         shell: pwsh
+  api-checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: api checkout
+        uses: ./.github/rave_ci/actions/update-cyclops2-databag@api-checkout
+        with:
+          repository: mdsol/RaveEDC
+          out-directory: ${{ runner.temp }}
+          paths: |
+            cd/cyclops
+            cd/github_functions.psm1
+            cd/manifests_functions.psm1
+            manifests
+            pir
+          refs: develop
+          github-token: ${{ secrets.PERSONAL_TOKEN }}
