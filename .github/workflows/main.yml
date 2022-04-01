@@ -46,7 +46,7 @@ jobs:
           ref: actions/api-checkout
 
       - name: api checkout
-        uses: ./.github/rave_ci/actions/update-cyclops2-databag
+        uses: ./.github/rave_ci/actions/api-checkout
         with:
           repository: mdsol/RaveEDC
           out-directory: ${{ runner.temp }}
