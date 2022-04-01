@@ -33,31 +33,31 @@ jobs:
     uses: ./.github/workflows/hello.yml
     with:
       who-to-greet: "Mike"
-  job1:
-    api-checkout:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout actions
-          uses: actions/checkout@v3
-          with:
-            repository: mdsol/rave_ci
-            token: ${{ secrets.PERSONAL_TOKEN }}
-            path: .github/rave_ci
-            ref: api-checkout
 
-        - name: api checkout
-          uses: ./.github/rave_ci/actions/update-cyclops2-databag
-          with:
-            repository: mdsol/RaveEDC
-            out-directory: ${{ runner.temp }}
-            paths: |
-              cd/cyclops
-              cd/github_functions.psm1
-              cd/manifests_functions.psm1
-              manifests
-              pir
-            refs: develop
-            github-token: ${{ secrets.PERSONAL_TOKEN }}
+  api-checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout actions
+        uses: actions/checkout@v3
+        with:
+          repository: mdsol/rave_ci
+          token: ${{ secrets.PERSONAL_TOKEN }}
+          path: .github/rave_ci
+          ref: api-checkout
+
+      - name: api checkout
+        uses: ./.github/rave_ci/actions/update-cyclops2-databag
+        with:
+          repository: mdsol/RaveEDC
+          out-directory: ${{ runner.temp }}
+          paths: |
+            cd/cyclops
+            cd/github_functions.psm1
+            cd/manifests_functions.psm1
+            manifests
+            pir
+          refs: develop
+          github-token: ${{ secrets.PERSONAL_TOKEN }}
 
 
 
