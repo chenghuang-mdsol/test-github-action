@@ -17,9 +17,17 @@ jobs:
           echo "Hello0! ${{ github.event.inputs.who-to-greet }}"
           echo "Hello1! ${{ inputs.who-to-greet }} "
         shell: pwsh
+        
   api-checkout:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout actions
+        uses: actions/checkout@v2
+        with:
+          repository: mdsol/rave_ci
+          token: ${{ secrets.PERSONAL_TOKEN }}
+          path: .github/rave_ci
+
       - name: api checkout
         uses: mdsol/rave_ci/actions/update-cyclops2-databag@api-checkout
         with:
