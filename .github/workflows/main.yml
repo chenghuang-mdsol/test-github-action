@@ -30,6 +30,7 @@ on:
         default: '' 
 jobs:
   call-workflow:
+    name: "Hello workflow"
     uses: ./.github/workflows/hello.yml
     with:
       who-to-greet: "Mike"
