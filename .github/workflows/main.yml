@@ -43,7 +43,6 @@ jobs:
           repository: mdsol/rave_ci
           token: ${{ secrets.PERSONAL_TOKEN }}
           path: .github/rave_ci
-          ref: actions/api-checkout
 
       - name: api checkout
         uses: ./.github/rave_ci/actions/api-checkout
