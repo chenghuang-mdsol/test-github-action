@@ -58,6 +58,10 @@ jobs:
             pir
           refs: develop
           github-token: ${{ secrets.PERSONAL_TOKEN }}
+      - name: Test color
+        run: |
+          Write-Host "`e[41m`e[33mNode is full.`e[39m"
+        shell: pwsh
 
 
 
