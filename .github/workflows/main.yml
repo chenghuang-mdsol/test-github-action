@@ -4,14 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       logLevel:
-        description: 'Log level'
+        description: 'script'
         required: true
-        default: 'warning' 
+        default: 1.ps1
         type: choice
         options:
-        - info
-        - warning
-        - debug 
+        - 1.ps1
+        - 2.ps1
       tags:
         description: 'Test scenario tags'
         required: false 
@@ -24,20 +23,19 @@ on:
         - sandbox
         - distro
         - UAT
-      targetBranch:
-        description: 'target branch'
-        required: true
-        default: '' 
 jobs:
-  call-workflow:
-    name: "Hello workflow"
-    uses: ./.github/workflows/hello.yml
-    with:
-      who-to-greet: "Mike"
+  # call-workflow:
+  #   name: "Hello workflow"
+  #   uses: ./.github/workflows/hello.yml
+  #   with:
+  #     who-to-greet: "Mike"
 
   api-checkout:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Checkout actions
         uses: actions/checkout@v2
         with:
@@ -59,9 +57,15 @@ jobs:
           refs: develop
           github-token: ${{ secrets.PERSONAL_TOKEN }}
       - name: Test error
-        continue-on-error: true
         run: |
-          throw "error"
+          if ( '${{ github.events.inputs.script }}' -eq '1.ps1' )
+          {
+            ./1.ps1
+          }
+          else
+          {
+            ./2.ps1
+          }
         shell: pwsh
       - name: Test after error
         run: |
