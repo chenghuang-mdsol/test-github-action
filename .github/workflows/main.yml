@@ -3,7 +3,7 @@ name: "Build : Build 1"
 on:
   workflow_dispatch:
     inputs:
-      logLevel:
+      script:
         description: 'script'
         required: true
         default: 1.ps1
