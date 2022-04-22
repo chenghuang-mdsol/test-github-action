@@ -58,7 +58,7 @@ jobs:
           github-token: ${{ secrets.PERSONAL_TOKEN }}
       - name: Test error
         run: |
-          if ( '${{ github.events.inputs.script }}' -eq '1.ps1' )
+          if ( '${{ github.event.inputs.script }}' -eq '1.ps1' )
           {
             ./1.ps1
           }
