@@ -58,10 +58,14 @@ jobs:
             pir
           refs: develop
           github-token: ${{ secrets.PERSONAL_TOKEN }}
-      - name: Test color
+      - name: Test error
+        continue-on-error: true
         run: |
-          Write-Host "`e[31mNode is full.`e[39m"
+          throw "error"
         shell: pwsh
-
+      - name: Test after error
+        run: |
+          throw "after error"
+        shell: pwsh
 
 
