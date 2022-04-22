@@ -36,27 +36,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Checkout actions
-        uses: actions/checkout@v2
-        with:
-          repository: mdsol/rave_ci
-          token: ${{ secrets.PERSONAL_TOKEN }}
-          path: .github/rave_ci
+      # - name: Checkout actions
+      #   uses: actions/checkout@v2
+      #   with:
+      #     repository: mdsol/rave_ci
+      #     token: ${{ secrets.PERSONAL_TOKEN }}
+      #     path: .github/rave_ci
 
-      - name: api checkout
-        uses: ./.github/rave_ci/actions/api-checkout
-        with:
-          repository: mdsol/RaveEDC
-          out-directory: ${{ runner.temp }}
-          paths: |
-            cd/cyclops
-            cd/github_functions.psm1
-            cd/manifests_functions.psm1
-            manifests
-            pir
-          refs: develop
-          github-token: ${{ secrets.PERSONAL_TOKEN }}
-      - name: Test error
+      # - name: api checkout
+      #   uses: ./.github/rave_ci/actions/api-checkout
+      #   with:
+      #     repository: mdsol/RaveEDC
+      #     out-directory: ${{ runner.temp }}
+      #     paths: |
+      #       cd/cyclops
+      #       cd/github_functions.psm1
+      #       cd/manifests_functions.psm1
+      #       manifests
+      #       pir
+      #     refs: develop
+      #     github-token: ${{ secrets.PERSONAL_TOKEN }}
+      - name: 1.ps1 => exit 1, 2.ps1 => exit 0
         run: |
           if ( '${{ github.event.inputs.script }}' -eq '1.ps1' )
           {
@@ -67,9 +67,4 @@ jobs:
             ./2.ps1
           }
         shell: pwsh
-      - name: Test after error
-        run: |
-          throw "after error"
-        shell: pwsh
-
 
