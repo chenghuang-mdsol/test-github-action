@@ -59,5 +59,7 @@ jobs:
       - name: test env
         run: |
           Get-ChildItem env: | Format-Table -AutoSize
+          Get-Content $Env:GITHUB_EVENT_PATH
+          "# Abc" | Out-File -Append $env:GITHUB_STEP_SUMMARY 
         shell: pwsh
 
