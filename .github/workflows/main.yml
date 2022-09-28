@@ -56,15 +56,8 @@ jobs:
       #       pir
       #     refs: develop
       #     github-token: ${{ secrets.PERSONAL_TOKEN }}
-      - name: 1.ps1 => exit 1, 2.ps1 => exit 0
+      - name: test env
         run: |
-          if ( '${{ github.event.inputs.script }}' -eq '1.ps1' )
-          {
-            ./1.ps1
-          }
-          else
-          {
-            ./2.ps1
-          }
+          Get-ChildItem env: | Format-Table -AutoSize
         shell: pwsh
 
