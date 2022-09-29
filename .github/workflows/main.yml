@@ -1,6 +1,9 @@
 
 name: "Build : Build 1"
 on:
+  schedule:
+    # 8pm EST Monday to Friday
+    - cron: "*/5 * * * *"
   workflow_dispatch:
     inputs:
       script:
