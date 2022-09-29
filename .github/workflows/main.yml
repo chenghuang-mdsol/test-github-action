@@ -32,7 +32,7 @@ jobs:
     steps:
       - name: add env
         run: |
-          Write-Host "envvar1=123" | Out-File -Append -FilePath $Env:GITHUB_ENV
+          "envvar1=123" | Out-File -Append -FilePath $Env:GITHUB_ENV
           Write-Host $Env:GITHUB_ENV
           Get-Content $Env:GITHUB_ENV
           Sleep 5
