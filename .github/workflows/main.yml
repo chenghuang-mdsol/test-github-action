@@ -35,6 +35,7 @@ jobs:
           Write-Host "envvar1=123" | Out-File -Append -FilePath $Env:GITHUB_ENV
           Write-Host $Env:GITHUB_ENV
           Get-Content $Env:GITHUB_ENV
+          Sleep 5
         shell: pwsh
 
       - name: test env
