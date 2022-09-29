@@ -2,7 +2,6 @@
 name: "Build : Build 1"
 on:
   schedule:
-    # 8pm EST Monday to Friday
     - cron: "*/5 * * * *"
   workflow_dispatch:
     inputs:
@@ -27,38 +26,12 @@ on:
         - distro
         - UAT
 jobs:
-  # call-workflow:
-  #   name: "Hello workflow"
-  #   uses: ./.github/workflows/hello.yml
-  #   with:
-  #     who-to-greet: "Mike"
-
   api-checkout:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # - name: Checkout actions
-      #   uses: actions/checkout@v2
-      #   with:
-      #     repository: mdsol/rave_ci
-      #     token: ${{ secrets.PERSONAL_TOKEN }}
-      #     path: .github/rave_ci
-
-      # - name: api checkout
-      #   uses: ./.github/rave_ci/actions/api-checkout
-      #   with:
-      #     repository: mdsol/RaveEDC
-      #     out-directory: ${{ runner.temp }}
-      #     paths: |
-      #       cd/cyclops
-      #       cd/github_functions.psm1
-      #       cd/manifests_functions.psm1
-      #       manifests
-      #       pir
-      #     refs: develop
-      #     github-token: ${{ secrets.PERSONAL_TOKEN }}
       - name: test env
         run: |
           Get-ChildItem env: | Format-Table -AutoSize
