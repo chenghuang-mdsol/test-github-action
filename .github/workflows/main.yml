@@ -33,11 +33,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: add env
+        run: |
+          "envvar1=123" | OutFile -Append $Env:GITHUB_ENV
+          "# Abc" | Out-File -Append $env:GITHUB_STEP_SUMMARY 
+        shell: pwsh
+
       - name: test env
         run: |
           Get-ChildItem env: | Format-Table -AutoSize
           Get-Content $Env:GITHUB_EVENT_PATH
           Get-Content $Env:GITHUB_ENV
+          Write-Host "envvar1=$env:envvar1"
           "# Abc" | Out-File -Append $env:GITHUB_STEP_SUMMARY 
         shell: pwsh
 
