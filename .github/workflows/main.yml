@@ -37,6 +37,7 @@ jobs:
         run: |
           Get-ChildItem env: | Format-Table -AutoSize
           Get-Content $Env:GITHUB_EVENT_PATH
+          Get-Content $Env:GITHUB_ENV
           "# Abc" | Out-File -Append $env:GITHUB_STEP_SUMMARY 
         shell: pwsh
 
