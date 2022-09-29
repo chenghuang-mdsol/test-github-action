@@ -30,7 +30,7 @@ on:
         - UAT
 jobs:
   api-checkout:
-    runs-on: ubuntu-latest
+    runs-on: [CHENG-PC-SSD]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
