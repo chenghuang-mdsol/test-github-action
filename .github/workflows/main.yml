@@ -35,8 +35,7 @@ jobs:
 
       - name: add env
         run: |
-          "envvar1=123" | OutFile -Append $Env:GITHUB_ENV
-          "# Abc" | Out-File -Append $env:GITHUB_STEP_SUMMARY 
+          Write-Host "envvar1=123" | Out-File -Append $Env:GITHUB_ENV
         shell: pwsh
 
       - name: test env
