@@ -36,6 +36,7 @@ jobs:
       - name: test matrix
         run: |
           echo ${{ matrix.num }}
+          sleep 30
         shell: bash
 
 
