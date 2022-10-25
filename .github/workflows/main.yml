@@ -28,14 +28,13 @@ on:
         - UAT
 jobs:
   api-checkout:
-    runs-on: [CHENG-PC-SSD]
+    runs-on: [self-hosted]
     steps:
       - name: add env
         run: |
           "envvar1=123" | Out-File -Append -FilePath $Env:GITHUB_ENV
           Write-Host $Env:GITHUB_ENV
           Get-Content $Env:GITHUB_ENV
-          Sleep 5
         shell: pwsh
 
       - name: test env
