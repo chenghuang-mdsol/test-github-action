@@ -27,23 +27,15 @@ on:
         - distro
         - UAT
 jobs:
-  api-checkout:
+  echo-in-matrix:
     runs-on: [self-hosted]
+    strategy:
+      matrix:
+        num: [1, 2, 3, 4, 5]
     steps:
-      - name: add env
+      - name: test matrix
         run: |
-          "envvar1=123" | Out-File -Append -FilePath $Env:GITHUB_ENV
-          Write-Host $Env:GITHUB_ENV
-          Get-Content $Env:GITHUB_ENV
-        shell: pwsh
+          echo ${{ matrix.num }}
+        shell: bash
 
-      - name: test env
-        run: |
-          Write-Host "envvar1=$env:envvar1"
-          Get-ChildItem env: | Format-Table -AutoSize
-          Get-Content $Env:GITHUB_EVENT_PATH
-          Get-Content $Env:GITHUB_ENV
-          
-          "# Abc" | Out-File -Append $env:GITHUB_STEP_SUMMARY 
-        shell: pwsh
 
