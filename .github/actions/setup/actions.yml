@@ -1,0 +1,16 @@
+name: Setup
+description: Setup Dependencies
+
+inputs:
+  dotnet-version:
+    description: 'Dotnet version, can be a list'
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Setup dotnet
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ inputs.dotnet-version }}
+      env:
+        DOTNET_INSTALL_DIR: "./.dotnet"

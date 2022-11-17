@@ -31,10 +31,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Dependencies
-        uses: mdsol/QuicksilverActions/actions/setup@144a712ae87eec1e5932816fa37277c21aec92ea
+        uses: ./.github/actions/setup
         with:
-          artifactory-username: ${{ secrets.ARTIFACTORY_PREPROD_USERNAME }}
-          artifactory-password: ${{ secrets.ARTIFACTORY_PREPROD_PASSWORD }}
           dotnet-version: |
             6.0.202
             7.0.100
