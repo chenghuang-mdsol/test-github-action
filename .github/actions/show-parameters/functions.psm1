@@ -28,48 +28,20 @@ Function ConvertTo-Markdown {
         [PSObject[]]$InputObject
     )
 
-    Begin {
-        $items = @()
-        $columns = @{}
-    }
+    $header = @()
+    $separator = @()
+    $body = @()
 
-    Process {
-        ForEach($item in $InputObject) {
-            $items += $item
+    ForEach($item in $InputObject) {
 
-            $item.PSObject.Properties | %{
-                if($null -ne $_.Value){
-                    if(-not $columns.ContainsKey($_.Name) -or $columns[$_.Name] -lt $_.Value.ToString().Length) {
-                        $columns[$_.Name] = $_.Value.ToString().Length
-                    }
-                }
-            }
+        $item.PSObject.Properties | ForEach-Object{
+            $header += $_.Name
+            $separator += ":--"
+            $body += $($_.Value).Replace('\', '\\').Replace('|','\|').Replace('*', '\*')
         }
     }
 
-    End {
-        ForEach($key in $($columns.Keys)) {
-            $columns[$key] = [Math]::Max($columns[$key], $key.Length)
-        }
+    $output = '|' + ($header -join '|') + '|`n|' + ($separator -join '|') + '|`n|' + ($body -join '|') + '|`n'
 
-        $header = @()
-        ForEach($key in $columns.Keys) {
-            $header += ('{0,-' + $columns[$key] + '}') -f $key
-        }
-        $header -join ' | '
-
-        $separator = @()
-        ForEach($key in $columns.Keys) {
-            $separator += '-' * $columns[$key]
-        }
-        $separator -join ' | '
-
-        ForEach($item in $items) {
-            $values = @()
-            ForEach($key in $columns.Keys) {
-                $values += ('{0,-' + $columns[$key] + '}') -f $item.($key)
-            }
-            $values -join ' | '
-        }
-    }
+    $output
 }
