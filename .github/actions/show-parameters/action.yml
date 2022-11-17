@@ -11,6 +11,6 @@ runs:
         if ($json.inputs -ne $null)
         {
           $json.inputs
-          "## Input parameters" + $([Environment]::NewLine) + ConvertTo-Markdown $json.inputs | Out-File -Append $env:GITHUB_STEP_SUMMARY
+          "## Input parameters$([Environment]::NewLine)" + (ConvertTo-Markdown $json.inputs) | Out-File -Append $env:GITHUB_STEP_SUMMARY
         }
       shell: pwsh
