@@ -1,0 +1,15 @@
+name: Show Input Parameters
+description: Show input parameters
+
+runs:
+  using: "composite"
+  steps:
+    - name : Show input parameters
+      run: |
+        Import-Module ./functions.psm1
+        $json = (Get-Content -Raw -Path $Env:GITHUB_EVENT_PATH | ConvertFrom-Json)
+        if ($json.inputs -ne $null)
+        {
+          $json.inputs | Add-Content $Env:GITHUB_STEP_SUMMARY
+        }
+      shell: pwsh

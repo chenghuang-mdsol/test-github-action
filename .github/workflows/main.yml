@@ -33,8 +33,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Dependencies
-        uses: ./.github/actions/setup
-        with:
-          dotnet-version: |
-            6.0.202
-
+        uses: ./.github/actions/show-parameters
