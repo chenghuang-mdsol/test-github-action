@@ -27,7 +27,7 @@ on:
         - distro
         - UAT
 jobs:
-  echo-in-matrix:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

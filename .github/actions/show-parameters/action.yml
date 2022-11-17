@@ -6,7 +6,7 @@ runs:
   steps:
     - name : Show input parameters
       run: |
-        Import-Module $PSScriptRoot/functions.psm1
+        Import-Module ${{ github.action_path }}/functions.psm1
         $json = (Get-Content -Raw -Path $Env:GITHUB_EVENT_PATH | ConvertFrom-Json)
         if ($json.inputs -ne $null)
         {
