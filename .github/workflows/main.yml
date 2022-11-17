@@ -28,15 +28,15 @@ on:
         - UAT
 jobs:
   echo-in-matrix:
-    runs-on: [self-hosted]
-    strategy:
-      matrix:
-        num: [1, 2, 3, 4, 5]
+    runs-on: ubuntu-latest
     steps:
-      - name: test matrix
-        run: |
-          echo ${{ matrix.num }}
-          sleep 30
-        shell: bash
+      - name: Setup Dependencies
+        uses: mdsol/QuicksilverActions/actions/setup@144a712ae87eec1e5932816fa37277c21aec92ea
+        with:
+          artifactory-username: ${{ secrets.ARTIFACTORY_PREPROD_USERNAME }}
+          artifactory-password: ${{ secrets.ARTIFACTORY_PREPROD_PASSWORD }}
+          dotnet-version: |
+            6.0.202
+            7.0.100
 
 
