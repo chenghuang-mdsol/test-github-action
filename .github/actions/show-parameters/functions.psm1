@@ -41,7 +41,7 @@ Function ConvertTo-Markdown {
         }
     }
 
-    $output = '|' + ($header -join '|') + '|`n|' + ($separator -join '|') + '|`n|' + ($body -join '|') + '|`n'
+    $output = '|' + ($header -join '|') + "|$([Environment]::NewLine)|" + ($separator -join '|') + "|$([Environment]::NewLine)|" + ($body -join '|') + '|'
 
     $output
 }
