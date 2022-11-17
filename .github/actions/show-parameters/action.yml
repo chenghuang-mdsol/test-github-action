@@ -10,6 +10,7 @@ runs:
         $json = (Get-Content -Raw -Path $Env:GITHUB_EVENT_PATH | ConvertFrom-Json)
         if ($json.inputs -ne $null)
         {
-          ConvertTo-Markdown $json.inputs | Add-Content $Env:GITHUB_STEP_SUMMARY
+          ConvertTo-Markdown $json.inputs
+          ConvertTo-Markdown $json.inputs | Out-File -Append $env:GITHUB_STEP_SUMMARY
         }
       shell: pwsh
