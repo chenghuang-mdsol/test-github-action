@@ -37,5 +37,4 @@ jobs:
         with:
           dotnet-version: |
             6.0.202
-            7.x
 

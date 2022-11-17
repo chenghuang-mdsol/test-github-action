@@ -9,9 +9,14 @@ runs:
   using: "composite"
   steps:
     # Checkout
-    - name: Setup Setup dotnet
+    - name: Setup dotnet optional
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{ inputs.dotnet-version }}
+      env:
+        DOTNET_INSTALL_DIR: "./.dotnet"
+
+    - name: Setup dotnet latest
+      uses: actions/setup-dotnet@v3
       env:
         DOTNET_INSTALL_DIR: "./.dotnet"
