@@ -31,6 +31,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          Write-Host "${{ inputs.scripts }}"
+          Write-Host "${{ inputs.script }}"
         shell: pwsh
 
