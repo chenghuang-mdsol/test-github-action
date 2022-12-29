@@ -29,9 +29,13 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
       - name: test env
         run: |
+          Write-Host "===================="
+          Write-Host "SOME_SECRET0 = ${{ secrets.SOME_SECRET0 }}"
+          Write-Host "===================="
           Get-ChildItem env: | Format-Table -AutoSize
           Get-Content $Env:GITHUB_EVENT_PATH
           "# Abc" | Out-File -Append $env:GITHUB_STEP_SUMMARY 
