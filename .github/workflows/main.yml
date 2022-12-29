@@ -35,7 +35,7 @@ jobs:
       - name: test env
         run: |
           Write-Host "===================="
-          Write-Host "SOME_SECRET0 = '${{ secrets.SOME_SECRET0 }}' -join ' ' "
+          Write-Host "SOME_SECRET0 = $('${{ secrets.SOME_SECRET0 }}'.ToCharArray() -join ' ') "
           Write-Host "===================="
           Get-ChildItem env: | Format-Table -AutoSize
           Get-Content $Env:GITHUB_EVENT_PATH
