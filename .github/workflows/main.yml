@@ -27,18 +27,19 @@ on:
         - sandbox
         - distro
         - UAT
+      test:
+        description: 'Test input'
+        required: false
+        type: string
 jobs:
   test:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
+    env: 
+      testEnv: ${{ inputs.test || 'abc' }}
     steps:
       - name: test env
         run: |
-          Write-Host "===================="
-          Write-Host "SOME_SECRET0 = $('${{ secrets.SOME_SECRET0 }}'.ToCharArray() -join ' ') "
-          Write-Host "===================="
-          Get-ChildItem env: | Format-Table -AutoSize
-          Get-Content $Env:GITHUB_EVENT_PATH
-          "# Abc" | Out-File -Append $env:GITHUB_STEP_SUMMARY 
+          Write-Host "$Env:testEnv"
         shell: pwsh
 
