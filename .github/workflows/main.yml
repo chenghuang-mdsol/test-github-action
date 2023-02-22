@@ -32,14 +32,19 @@ on:
         required: false
         type: string
 jobs:
-  test:
+jobs:
+  job1:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
-    env: 
-      testEnv: ${{ inputs.test || 'abc' }}
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - name: test env
-        run: |
-          Write-Host "$Env:testEnv"
+      - id: set-matrix
+        run: echo "matrix={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
+        shell: bash
+  job2:
+    needs: job1
+    env:
+      matrix: ${{ fromJSON(needs.job1.outputs.matrix) }}
+    steps:
+      - run: $Env:matrix
         shell: pwsh
-
