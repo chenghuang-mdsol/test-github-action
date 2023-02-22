@@ -1,0 +1,17 @@
+name: Cerebro Deployment
+on:
+  workflow_call:
+    inputs:
+      deployment-manifests:  # id of input
+        description: 'Deployment Manifest'
+        required: true
+        type: string
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    env:
+      matrix: ${{ inputs.deployment-manifests }}
+    steps:
+      - name: Clean up folder
+        run: $env:matrix
+        shell: pwsh
