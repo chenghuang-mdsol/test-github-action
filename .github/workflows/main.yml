@@ -43,4 +43,4 @@ jobs:
   call_cerebro:
     uses: ./.github/workflows/cerebro.yml
     with:
-      deployment-manifests: ${{ set-matrix.outputs.matrix }}
+      deployment-manifests: ${{ steps.set-matrix.outputs.matrix }}
