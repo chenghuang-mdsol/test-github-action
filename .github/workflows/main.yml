@@ -41,6 +41,7 @@ jobs:
         run: echo "matrix={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
         shell: bash
   job2:
+    runs-on: ubuntu-latest
     needs: job1
     env:
       matrix: ${{ fromJSON(needs.job1.outputs.matrix) }}
