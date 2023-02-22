@@ -41,6 +41,7 @@ jobs:
         run: echo "matrix={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
         shell: bash
   call_cerebro:
+    needs: [job1]
     uses: ./.github/workflows/cerebro.yml
     with:
-      deployment-manifests: ${{ steps.set-matrix.outputs.matrix }}
+      deployment-manifests: ${{ needs.job1.outputs.matrix }}
