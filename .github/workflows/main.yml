@@ -38,10 +38,20 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - id: set-matrix
-        run: echo "matrix={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
+        working-directory: ${{ runner.temp }}
+        run: |
+          New-Item -ItemType Directory -Path _tmp -Force
+          "aabbcc" | Out-File _tmp/aabbcc.txt
         shell: bash
-  call_cerebro:
-    needs: [job1]
-    uses: ./.github/workflows/cerebro.yml
-    with:
-      deployment-manifests: ${{ needs.job1.outputs.matrix }}
+      - uses: actions/upload-artifact@v3
+        if: always()
+        working-directory: ${{ runner.temp }}
+        with:
+          name: ${{ matrix.Url }} - ${{ matrix.ComponentName }}
+          path: |
+            _tmp/*.txt
+  # call_cerebro:
+  #   needs: [job1]
+  #   uses: ./.github/workflows/cerebro.yml
+  #   with:
+  #     deployment-manifests: ${{ needs.job1.outputs.matrix }}
