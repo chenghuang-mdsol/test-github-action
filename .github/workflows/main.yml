@@ -46,7 +46,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           path: |
-            _tmp/*.txt
+            ${{ runner.temp }}/_tmp/*.txt
   # call_cerebro:
   #   needs: [job1]
   #   uses: ./.github/workflows/cerebro.yml
