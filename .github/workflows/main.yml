@@ -42,7 +42,7 @@ jobs:
         run: |
           New-Item -ItemType Directory -Path _tmp -Force
           "aabbcc" | Out-File _tmp/aabbcc.txt
-        shell: bash
+        shell: pwsh
       - uses: actions/upload-artifact@v3
         with:
           path: |
