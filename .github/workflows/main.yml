@@ -44,10 +44,7 @@ jobs:
           "aabbcc" | Out-File _tmp/aabbcc.txt
         shell: bash
       - uses: actions/upload-artifact@v3
-        if: always()
-        working-directory: ${{ runner.temp }}
         with:
-          name: ${{ matrix.Url }} - ${{ matrix.ComponentName }}
           path: |
             _tmp/*.txt
   # call_cerebro:
