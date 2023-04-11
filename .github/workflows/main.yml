@@ -1,5 +1,7 @@
 
 name: "Build : Build 1"
+env:
+  GITHUB_TOKEN: {{ secrets.EXTERNAL_GITHUB_TOKEN }}
 on:
   push:
     branches:
@@ -33,12 +35,11 @@ on:
         type: string
 
 jobs:
-  env:
-    GITHUB_TOKEN: {{ secrets.EXTERNAL_GITHUB_TOKEN }}
   job1:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
+
     steps:
       - id: set-matrix
         working-directory: ${{ runner.temp }}
