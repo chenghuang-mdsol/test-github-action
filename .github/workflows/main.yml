@@ -31,6 +31,8 @@ on:
         description: 'Test input'
         required: false
         type: string
+env:
+  GITHUB_TOKEN: {{ secrets.EXTERNAL_GITHUB_TOKEN }}
 jobs:
   job1:
     runs-on: ubuntu-latest
