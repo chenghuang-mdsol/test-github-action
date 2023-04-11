@@ -1,7 +1,7 @@
 
 name: "Build : Build 1"
 env:
-  abc: {{ secrets.EXTERNAL_GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.EXTERNAL_GITHUB_TOKEN }}
 on:
   push:
     branches:
