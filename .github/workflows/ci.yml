@@ -8,6 +8,7 @@ on:
 
 jobs:
   job1:
+    if: ${{ github.event.label.name == 'bug' }}
     runs-on: ubuntu-latest
     services:
       sql-server:
