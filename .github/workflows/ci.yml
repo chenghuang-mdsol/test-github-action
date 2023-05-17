@@ -22,7 +22,7 @@ jobs:
           MSSQL_AGENT_ENABLED: 'True'
 
     steps:
-      - id: try container
+      - id: try-container
         run: |
           Install-Module SqlServer -Force
           $sqlparams = @{
