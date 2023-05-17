@@ -1,0 +1,45 @@
+
+name: "Try labeled"
+env:
+  GITHUB_TOKEN: ${{ secrets.EXTERNAL_GITHUB_TOKEN }}
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    services:
+      sql-server:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        ports:
+          - 1434: 1433
+        options: >-
+          --user root
+        env:
+          ACCEPT_EULA: 'Y'
+          MSSQL_SA_PASSWORD: 'password**'
+          MSSQL_AGENT_ENABLED: 'True'
+
+    steps:
+      - id: try container
+        run: |
+          Install-Module SqlServer -Force
+          $sqlparams = @{
+            ServerInstance    = 127.0.0.1,1434
+            Database          = 'master'
+            Username          = 'sa'
+            Password          = 'password*8'
+            QueryTimeout      = 0
+            ConnectionTimeout = 5
+            TrustServerCertificate = $True
+          }
+
+          $query = @"SELECT CONCAT (s.name,'.', t.name) as Name FROM sys.Tables t 
+                INNER JOIN sys.schemas s
+                    ON t.schema_id = s.schema_id
+          "@
+
+          $sqlparams.Query = $query
+          Invoke-Sqlcmd @sqlparams
+        shell: pwsh

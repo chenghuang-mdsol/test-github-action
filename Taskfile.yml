@@ -1,0 +1,27 @@
+# https://taskfile.dev
+
+version: '3'
+
+dotenv: ['.env', '{{.HOME}}/.env']
+
+vars:
+  NAMESPACE: raveedc
+
+
+tasks:
+  k8s:check:
+    internal: true
+    runs: once
+    preconditions:
+      - sh: kubectl get nodes
+        msg: You need running kubernetes
+  pwsh:check:
+    internal: true
+    runs: once
+    preconditions:
+      - sh: pwsh --version
+        msg: You need PowerShellCore
+  default:
+    cmds:
+      - Write-Host {{.NAMESPACE}}
+    silent: true
