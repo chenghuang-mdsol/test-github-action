@@ -18,7 +18,7 @@ jobs:
           --user root
         env:
           ACCEPT_EULA: 'Y'
-          MSSQL_SA_PASSWORD: 'password**'
+          MSSQL_SA_PASSWORD: 'password*8'
           MSSQL_AGENT_ENABLED: 'True'
 
     steps:
