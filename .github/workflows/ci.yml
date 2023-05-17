@@ -13,7 +13,7 @@ jobs:
       sql-server:
         image: mcr.microsoft.com/mssql/server:2022-latest
         ports:
-          - 1434: 1433
+          - 1434:1433
         options: >-
           --user root
         env:
