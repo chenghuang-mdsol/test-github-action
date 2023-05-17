@@ -35,7 +35,8 @@ jobs:
             TrustServerCertificate = $True
           }
 
-          $query = @"SELECT CONCAT (s.name,'.', t.name) as Name FROM sys.Tables t 
+          $query = @"
+          SELECT CONCAT (s.name,'.', t.name) as Name FROM sys.Tables t 
                 INNER JOIN sys.schemas s
                     ON t.schema_id = s.schema_id
           "@
