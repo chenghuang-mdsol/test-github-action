@@ -1,0 +1,22 @@
+name: Release Checker
+
+on:
+  push:
+    branches:
+      - "release/**"
+jobs:
+  check-and-open-pr:
+    name: Open a PR if needed
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: snow-actions/sparse-checkout@v1.2.0
+        with:
+          patterns: |
+            scripts/github/open-pullrequest.ps1
+
+      - name: Check pull requests
+        run: ./scripts/github/open-pullrequest.ps1 -base "main"
+        shell: pwsh
+        env: 
+          GITHUB_TOKEN: '${{ secrets.EXTERNAL_GITHUB_TOKEN }}'
+
