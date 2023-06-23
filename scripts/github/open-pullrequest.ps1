@@ -3,7 +3,7 @@ Param (
     [string]$base = "main",
     [string]$repo = $Env:GITHUB_REPOSITORY,
     [string]$headRepoOwner = $Env:GITHUB_ACTOR,
-    [string]$headRef = $Env:GITHUB_REF
+    [string]$headRef = $Env:GITHUB_HEAD_REF
 )
 
 # Check GITHUB_TOKEN
