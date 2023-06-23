@@ -6,7 +6,7 @@ on:
       - "release/**"
 jobs:
   check-and-open-pr:
-    name: Open a PR if needed ${{ github.repository }} - ${{ github.actor }} - ${{ github.head_ref }}
+    name: Open a PR if needed
     runs-on: [ubuntu-latest]
     steps:
       - uses: snow-actions/sparse-checkout@v1.2.0
@@ -16,7 +16,7 @@ jobs:
 
       - name: Check pull requests
         run: |
-          Write-Host "${{ github.repository }} - ${{ github.actor }} - ${{ github.head_ref }}"
+          Write-Host "$Env:GITHUB_REPOSITORY - $Env:GITHUB_ACTOR - $Env:GITHUB_HEAD_REF"
           ./scripts/github/open-pullrequest.ps1 -base "main"
         shell: pwsh
         env: 
