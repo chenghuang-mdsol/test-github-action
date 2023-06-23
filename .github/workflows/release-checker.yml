@@ -15,7 +15,9 @@ jobs:
             scripts/github/open-pullrequest.ps1
 
       - name: Check pull requests
-        run: ./scripts/github/open-pullrequest.ps1 -base "main"
+        run: |
+          Write-Host "${{ github.repository }} - ${{ github.actor }} - ${{ github.head_ref }}"
+          ./scripts/github/open-pullrequest.ps1 -base "main"
         shell: pwsh
         env: 
           GITHUB_TOKEN: '${{ secrets.EXTERNAL_GITHUB_TOKEN }}'
