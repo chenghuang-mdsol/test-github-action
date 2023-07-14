@@ -8,27 +8,11 @@ on:
     - 'main'
   workflow_dispatch:
     inputs:
-      script:
-        description: 'script'
-        required: true
-        default: 1.ps1
-        type: choice
-        options:
-        - 1.ps1
-        - 2.ps1
-      tags:
-        description: 'Test scenario tags'
-        required: false 
-        type: boolean
       environment:
         description: 'Environment to run tests against'
         type: environment
         required: true
         default: sandbox
-        options:
-        - sandbox
-        - distro
-        - UAT
       test:
         description: 'Test input'
         required: false
@@ -37,22 +21,9 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-
-    steps:
-      - id: set-matrix
-        working-directory: ${{ runner.temp }}
-        run: |
-          New-Item -ItemType Directory -Path _tmp -Force
-          "aabbcc" | Out-File _tmp/aabbcc.txt
-        shell: pwsh
-      - uses: actions/upload-artifact@v3
-        with:
-          path: |
-            ${{ runner.temp }}/_tmp/*.txt
-  # call_cerebro:
-  #   needs: [job1]
-  #   uses: ./.github/workflows/cerebro.yml
-  #   with:
-  #     deployment-manifests: ${{ needs.job1.outputs.matrix }}
+  call_cerebro:
+    needs: [job1]
+    uses: ./.github/workflows/cerebro.yml
+    with:
+      environment: ${{ inputs.environment }}
+    secrets: inherit

@@ -2,16 +2,18 @@ name: Cerebro Deployment
 on:
   workflow_call:
     inputs:
-      deployment-manifests:  # id of input
-        description: 'Deployment Manifest'
-        required: true
+      environment:
+        description: 'Environment'
+        required: false
         type: string
+        default: sandbox
 jobs:
   deployment:
     runs-on: ubuntu-latest
-    env:
-      matrix: ${{ inputs.deployment-manifests }}
+    environment: ${{ inputs.environment }}
     steps:
-      - name: Clean up folder
-        run: $env:matrix
+      - name: Show secrets
+        run: Write-Host $Env:var0
         shell: pwsh
+        env:
+          var0 : ${{ secrets.secret0 }}
