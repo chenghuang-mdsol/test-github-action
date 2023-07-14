@@ -16,4 +16,5 @@ jobs:
         run: Write-Host $Env:var0
         shell: pwsh
         env:
-          var0 : ${{ secrets.secret0 }}
+          var0: ${{ secrets.secret0 }}
+          var1: ${{ secrets.repo_secret0 }}
