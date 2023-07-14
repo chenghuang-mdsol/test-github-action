@@ -22,5 +22,5 @@ jobs:
   call_cerebro:
     uses: ./.github/workflows/cerebro.yml
     with:
-      environment: sandbox
+      environment: ${{ inputs.environment || 'sandbox' }}
     secrets: inherit
