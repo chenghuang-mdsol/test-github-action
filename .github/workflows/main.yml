@@ -19,10 +19,7 @@ on:
         type: string
 
 jobs:
-  job1:
-    runs-on: ubuntu-latest
   call_cerebro:
-    needs: [job1]
     uses: ./.github/workflows/cerebro.yml
     with:
       environment: ${{ inputs.environment }}
