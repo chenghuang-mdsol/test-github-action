@@ -17,6 +17,7 @@ jobs:
             RaveDB:\s*([\w\-_\.\/]+)
       - run: |
           Write-Host "value = $env:value"
+        shell: pwsh
         env: 
           value: ${{ steps.extract.outputs.value }}
 
