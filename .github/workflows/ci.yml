@@ -16,7 +16,6 @@ jobs:
         shell: pwsh
 
       - uses: khan/pull-request-comment-trigger@v1.1.0
-        if: ${{ github.event == 'issue_comment'}}
         id: check
         with:
           trigger: 'check pr'
