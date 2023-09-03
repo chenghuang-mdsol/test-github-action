@@ -13,13 +13,13 @@ jobs:
     steps:
       - run: |
           Write-Host "${{ github.event_name }}"
-          Write-Host "pr? ${{ github.event.pull_request }}"
+          Write-Host "pr ? ${{ github.event.pull_request }}"
         shell: pwsh
 
       - uses: khan/pull-request-comment-trigger@v1.1.0
         id: check
         with:
-          trigger: 'check pr'
+          trigger: '@check'
           reaction: rocket
           prefix_only: true
       - uses: actions/checkout@v3
