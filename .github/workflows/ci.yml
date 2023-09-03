@@ -17,23 +17,27 @@ jobs:
         shell: pwsh
 
       - uses: khan/pull-request-comment-trigger@v1.1.0
+        if: ${{ github.event == 'issue_comment'}}
         id: check
         with:
-          trigger: '@check'
+          trigger: 'check pr'
           reaction: rocket
           prefix_only: true
+
       - uses: actions/checkout@v3
-        if: steps.check.outputs.triggered == 'true'
+        if:  ${{ github.event.pull_request == 'pull_request' || steps.check.outputs.triggered == 'true' }}
+
       - id: extract
-        if: steps.check.outputs.triggered == 'true'
+        if:  ${{ github.event.pull_request == 'pull_request' || steps.check.outputs.triggered == 'true' }}
         uses: begedin/variable-regex-extractor-action@v0.2.1
         with:
           pattern: |
             RaveDB:\s*([\w\-_\.\/]+)
+
       - run: |
           Write-Host "value = $env:value"
         shell: pwsh
-        if: steps.check.outputs.triggered == 'true'
+        if:  ${{ github.event.pull_request == 'pull_request' || steps.check.outputs.triggered == 'true' }}
         env: 
           value: ${{ steps.extract.outputs.value }}
 
