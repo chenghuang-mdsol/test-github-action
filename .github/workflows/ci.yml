@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: extract
-        uses: actions/variable-regex-extractor-action@v1.1
+        uses: begedin/variable-regex-extractor-action@v0.2.1
         with:
           pattern: |
             RaveDB:\s*([\w\-_\.\/]+)
