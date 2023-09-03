@@ -13,8 +13,9 @@ jobs:
       - uses: khan/pull-request-comment-trigger@v1.1.0
         id: check
         with:
-          trigger: '@deploy'
+          trigger: 'check pr'
           reaction: rocket
+          prefix_only: true
       - uses: actions/checkout@v3
         if: steps.check.outputs.triggered == 'true'
       - id: extract
