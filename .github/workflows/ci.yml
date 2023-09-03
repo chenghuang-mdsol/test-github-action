@@ -4,13 +4,21 @@ env:
   GITHUB_TOKEN: ${{ secrets.EXTERNAL_GITHUB_TOKEN }}
 on:
   pull_request:
-  workflow_dispatch:
+  issue_comment:
+    types: [created]
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
+      - uses: khan/pull-request-comment-trigger@v1.1.0
+        id: check
+        with:
+          trigger: '@deploy'
+          reaction: rocket
       - uses: actions/checkout@v3
+        if: steps.check.outputs.triggered == 'true'
       - id: extract
+        if: steps.check.outputs.triggered == 'true'
         uses: begedin/variable-regex-extractor-action@v0.2.1
         with:
           pattern: |
@@ -18,6 +26,7 @@ jobs:
       - run: |
           Write-Host "value = $env:value"
         shell: pwsh
+        if: steps.check.outputs.triggered == 'true'
         env: 
           value: ${{ steps.extract.outputs.value }}
 
