@@ -16,8 +16,8 @@ jobs:
       - uses: actions/checkout@v3
       - id: try
         run: |
-          $PRNumber = $Env:GITHUB_EVENT_PULL_REQUEST_NUMBER
-          Write-Host $env:PRNumber
+          $body = gh pr view https://github.com/$Env:GITHUB_REPOSITORY/pull/$Env:PR_NUMBER -q '.body' --json body
+          Write-Host $body
         shell: pwsh
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
