@@ -4,47 +4,20 @@ env:
   GITHUB_TOKEN: ${{ secrets.EXTERNAL_GITHUB_TOKEN }}
 on:
   workflow_dispatch:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+      - '**.txt'
+      - 'docs/**'
 jobs:
   job1:
     runs-on: ubuntu-latest
-    services:
-      sql-server:
-        image: mcr.microsoft.com/mssql/server:2022-latest
-        ports:
-          - 1434:1433
-        options: >-
-          --user root
-        env:
-          ACCEPT_EULA: 'Y'
-          MSSQL_SA_PASSWORD: 'password*8'
-          MSSQL_AGENT_ENABLED: 'True'
-
     steps:
       - uses: actions/checkout@v3
-      - id: try-container
+      - id: try
         run: |
-          # Install-Module SqlServer -Force
-          # $sqlparams = @{
-          #   ServerInstance    = '127.0.0.1,1434'
-          #   Database          = 'master'
-          #   Username          = 'sa'
-          #   Password          = 'password*8'
-          #   QueryTimeout      = 0
-          #   ConnectionTimeout = 5
-          #   TrustServerCertificate = $True
-          # }
-
-          # $query = @"
-          # SELECT CONCAT (s.name,'.', t.name) as Name FROM sys.Tables t 
-          #       INNER JOIN sys.schemas s
-          #           ON t.schema_id = s.schema_id
-          # "@
-
-          # $sqlparams.Query = $query
-          # Invoke-Sqlcmd @sqlparams | ConvertTo-Json | Out-File ./testjson.json
-          # git config --global user.name "ravedb-ci"
-          # git config --global user.email "ravedb-ci@ravedb-ci.com"
-          # git add testjson.json
-          # git commit -m "Update testjon.json" testjson.json
-          # git push origin HEAD
+          $PRNumber = $Env:GITHUB_EVENT_PULL_REQUEST_NUMBER
+          Write-Host $env:PRNumber
         shell: pwsh
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
