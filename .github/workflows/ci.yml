@@ -10,11 +10,6 @@ on:
         required: false
         type: string
         default: main
-  pull_request:
-    paths-ignore:
-      - '**.md'
-      - '**.txt'
-      - 'docs/**'
 jobs:
   job1:
     runs-on: ubuntu-latest
@@ -22,17 +17,8 @@ jobs:
       - uses: actions/checkout@v3
       - id: try
         run: |
-          if ([string]::IsNullOrEmpty($Env:PR_NUMBER))
-          {
-            $ravedbRef = $Env:INPUTS_RAVE_DB_REF
-          }
-          else
-          {
-            $body = gh pr view https://github.com/$Env:GITHUB_REPOSITORY/pull/$Env:PR_NUMBER -q '.body' --json body
-            $ravedbRef = [Regex]::match($c, 'RaveDB: \s*([\w\-_\.\/]+)').Groups[1].Value
-          }
-          Write-Host $ravedbRef
+          Write-Host "env.INPUTS_RAVE_DB_REF2 = $env:INPUTS_RAVE_DB_REF2"
         shell: pwsh
         env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+          INPUTS_RAVE_DB_REF2: ${{ env.INPUTS_RAVE_DB_REF }}
           INPUTS_RAVE_DB_REF: ${{ inputs.rave-db-ref }}
