@@ -21,14 +21,8 @@ jobs:
           New-Item -ItemType Directory ${{ runner.temp }}/_tmp/reports/2
           @{ a = 1 } | ConvertTo-Json | Out-File ${{ runner.temp }}/_tmp/reports/1/a.result.json
           @{ b = 2 } | ConvertTo-Json | Out-File ${{ runner.temp }}/_tmp/reports/2/b.result.json
+          jfrog rt u "${{ runner.temp }}/_tmp/reports/**/*.result.json" "raveedc-metadata-preprod-local/ci/artifacts/nightly-build/test-run/" --recursive=true --flat=true --access-token=${{ secrets.ARTIFACTORY_PREPROD_PASSWORD }} --url=raveedc-metadata-preprod-local/ci/artifacts/nightly-build/test-run/
         shell: pwsh
         env:
           INPUTS_RAVE_DB_REF2: ${{ env.INPUTS_RAVE_DB_REF }}
           INPUTS_RAVE_DB_REF: ${{ inputs.rave-db-ref }}
-      - name: Publish to Artifactory
-        uses: advancedcsg-open/action-jfrog-cli@master
-        with:
-          url: 'https://mdsol.jfrog.io/artifactory/raveedc-metadata-preprod-local'
-          credentials type: 'accesstoken'
-          access token: ${{ secrets.ARTIFACTORY_PREPROD_PASSWORD }}
-          args: u "${{ runner.temp }}/_tmp/reports/**/*.result.json" "raveedc-metadata-preprod-local/ci/artifacts/nightly-build/test-run/" --recursive=true --flat=true
