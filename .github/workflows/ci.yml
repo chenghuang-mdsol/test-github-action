@@ -31,4 +31,4 @@ jobs:
           url: 'https://mdsol.jfrog.io/artifactory/raveedc-metadata-preprod-local'
           credentials type: 'accesstoken'
           access token: ${{ secrets.ARTIFACTORY_PREPROD_PASSWORD }}
-          args: u "${{ runner.temp }}/_tmp/reports/**/*.result.json" "raveedc-metadata-preprod-local/ci/artifacts/nightly-build/test-run" --recursive=true
+          args: u "${{ runner.temp }}/_tmp/reports/**/*.result.json" "raveedc-metadata-preprod-local/ci/artifacts/nightly-build/test-run" --recursive=true --flat=true
