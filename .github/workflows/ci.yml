@@ -12,7 +12,7 @@ on:
         default: main
 jobs:
   job1:
-    runs-on: self-hosted, Linux
+    runs-on: arc-runner-linux
     steps:
       - uses: jfrog/setup-jfrog-cli@v4
         env:
