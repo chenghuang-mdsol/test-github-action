@@ -10,6 +10,10 @@ on:
         required: false
         type: string
         default: main
+      csv:
+        description: 'csv'
+        required: false
+        type: string
 jobs:
   job1:
     runs-on: arc-runner-windows
@@ -21,12 +25,9 @@ jobs:
       - uses: actions/checkout@v3
       - id: try
         run: |
-          New-Item -ItemType Directory ${{ runner.temp }}/_tmp/reports/1
-          New-Item -ItemType Directory ${{ runner.temp }}/_tmp/reports/2
-          @{ a = 1 } | ConvertTo-Json | Out-File ${{ runner.temp }}/_tmp/reports/1/a.result.json
-          @{ b = 2 } | ConvertTo-Json | Out-File ${{ runner.temp }}/_tmp/reports/2/b.result.json
-          Write-Host "KUBERNETES_SERVICE_NODE_NAME = $env:KUBERNETES_SERVICE_NODE_NAME"
+          $Env:CSV
         shell: pwsh
         env:
           INPUTS_RAVE_DB_REF2: ${{ env.INPUTS_RAVE_DB_REF }}
           INPUTS_RAVE_DB_REF: ${{ inputs.rave-db-ref }}
+          CSV: ${{ inputs.csv }}
