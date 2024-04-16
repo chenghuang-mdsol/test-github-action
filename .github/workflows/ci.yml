@@ -14,9 +14,14 @@ on:
         description: 'csv'
         required: false
         type: string
+      stage:
+        description: 'stage'
+        required: false
+        type: string
+        default: main
 jobs:
   job1:
-    runs-on: ubuntu-latest
+    runs-on: "${{ inputs.stage == 'lab1' && 'lab1' || 'ubuntu-latest' }}"
     steps:
       - uses: jfrog/setup-jfrog-cli@v4
         env:
