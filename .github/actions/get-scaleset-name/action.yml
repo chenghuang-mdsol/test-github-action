@@ -1,0 +1,22 @@
+name: 'Get scaleset name'
+description: 'Get scaleset name'
+inputs:
+  stage:
+    description: ''
+    required: true
+    default: 'World'
+outputs:
+  scaleset:
+    description: "Scaleset name"
+    value: ${{ steps.output-scaleset-name.outputs.SCALESET }}
+runs:
+  using: "composite"
+  steps:
+    - id: output-scaleset-name
+      name: Output scaleset name from stage
+      run: |
+        $lab1 = @("sts","distro","lightning","validation","infrastructure","infrastructure-nonprod","ondemand").Contains('${{ inputs.stage }}'.ToLower())
+        $hdc = @("innovate", "production", "infrastructure-prod").Contains('${{ inputs.stage }}'.ToLower())
+        $scaleset = ($lab1 -eq $True) ? "lab1" : ($hdc -eq $True) ? "hdc" : "unknown"
+        "SCALESET=$scaleset" | Add-Content -Path $Env:GITHUB_OUTPUT -Encoding UTF8
+      shell: pwsh

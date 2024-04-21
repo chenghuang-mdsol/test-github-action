@@ -21,18 +21,12 @@ on:
         default: main
 jobs:
   job1:
-    runs-on: "${{ inputs.stage == 'lab1' && 'lab1' || 'ubuntu-latest' }}"
+    runs-on: ubuntu-latest
     steps:
-      - uses: jfrog/setup-jfrog-cli@v4
-        env:
-            JF_URL: https://mdsol.jfrog.io
-            JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
-      - uses: actions/checkout@v3
-      - id: try
-        run: |
-          $Env:CSV
+      - id: get-scaleset-name
+        name: Setup Prod Nuget Source
+        uses: ./.github/actions/get-scaleset-name
+        with:
+          stage: sts
+      - run: Write-Host "scaleset name = ${{ steps.get-scaleset-name.outputs.scaleset }}"
         shell: pwsh
-        env:
-          INPUTS_RAVE_DB_REF2: ${{ env.INPUTS_RAVE_DB_REF }}
-          INPUTS_RAVE_DB_REF: ${{ inputs.rave-db-ref }}
-          CSV: ${{ inputs.csv }}
