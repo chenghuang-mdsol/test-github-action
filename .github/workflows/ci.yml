@@ -23,10 +23,11 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - id: get-scaleset-name
         name: Setup Prod Nuget Source
         uses: ./.github/actions/get-scaleset-name
         with:
-          stage: sts
+          stage: ${{ inputs.stage }}
       - run: Write-Host "scaleset name = ${{ steps.get-scaleset-name.outputs.scaleset }}"
         shell: pwsh
