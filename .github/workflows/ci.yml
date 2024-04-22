@@ -35,3 +35,6 @@ jobs:
           stage: ${{ inputs.stage }}
       - run: Write-Host "scaleset name = ${{ steps.get-scaleset-name.outputs.scaleset }}"
         shell: pwsh
+      - run: Write-Host "${{ vars.HTTPS_PROXY }}"
+        if: ${{ vars.HTTPS_PROXY != ''}}
+        shell: pwsh
