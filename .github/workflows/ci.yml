@@ -2,6 +2,7 @@
 name: "Try"
 env:
   GITHUB_TOKEN: ${{ secrets.EXTERNAL_GITHUB_TOKEN }}
+  RUNS_ON: ${{ vars.RUNS_ON }}
 on:
   workflow_dispatch:
     inputs:
@@ -19,10 +20,11 @@ on:
         required: false
         type: string
         default: main
+
 jobs:
   job1:
-    runs-on: ${{ vars.RUNS_ON }}
     environment: distro
+    runs-on: ${{ env.RUNS_ON }}
     steps:
       - uses: actions/checkout@v4
         with:
