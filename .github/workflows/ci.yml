@@ -24,7 +24,7 @@ on:
 jobs:
   job1:
     environment: distro
-    runs-on: ${{ env.RUNS_ON }}
+    runs-on: ${{ vars.RUNS_ON }}
     steps:
       - uses: actions/checkout@v4
         with:
