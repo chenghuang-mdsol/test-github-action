@@ -1,43 +1,58 @@
+name: CI/CD Pipeline
 
-name: "Try"
-env:
-  GITHUB_TOKEN: ${{ secrets.EXTERNAL_GITHUB_TOKEN }}
-  RUNS_ON: ${{ vars.RUNS_ON }}
 on:
   workflow_dispatch:
     inputs:
-      rave-db-ref:
-        description: 'RaveDB Reference, use commit hash, branch name or tag'
-        required: false
-        type: string
-        default: main
-      csv:
-        description: 'csv'
-        required: false
-        type: string
       stage:
-        description: 'stage'
-        required: false
-        type: string
-        default: main
+        description: Stage
+        required: true
+        default: lightning
+        type: environment
+      deploy-manifest-path:
+        description: Deployment Manifest JSON/CSV
+        required: true
+      deploy-config-path:
+        description: Configuration Yaml for OCX
+      skip-deployment:
+        type: boolean
+        default: false
+        description: Skip deployment, just setup and run test
 
 jobs:
-  job1:
-    environment: distro
-    runs-on: ${{ vars.RUNS_ON }}
+  pre-deployment:
+    runs-on: ubuntu-latest
+    outputs:
+      HELM_ENABLED: ${{ steps.check.outputs.HELM_ENABLED }}
+      CEREBRO_ENABLED: ${{ steps.check.outputs.CEREBRO_ENABLED }}
     steps:
-      - uses: actions/checkout@v4
-        with:
-          sparse-checkout: |
-            .github/actions/get-scaleset-name
+      - name: Set HELM and CEREBRO Enabled Outputs
+        id: check
+        run: |
+          echo "::set-output name=HELM_ENABLED::True"
+          echo "::set-output name=CEREBRO_ENABLED::True"
+      - name: Debug Outputs
+        run: |
+          echo "HELM_ENABLED: ${{ steps.check.outputs.HELM_ENABLED }}"
+          echo "CEREBRO_ENABLED: ${{ steps.check.outputs.CEREBRO_ENABLED }}"
 
-      - id: get-scaleset-name
-        name: Setup Prod Nuget Source
-        uses: ./.github/actions/get-scaleset-name
-        with:
-          stage: ${{ inputs.stage }}
-      - run: Write-Host "scaleset name = ${{ steps.get-scaleset-name.outputs.scaleset }}"
-        shell: pwsh
-      - run: Write-Host "${{ vars.HTTPS_PROXY }}"
-        if: ${{ vars.HTTPS_PROXY != ''}}
-        shell: pwsh
+  helm:
+    if: ${{ !failure() && !cancelled() && needs.pre-deployment.outputs.HELM_ENABLED == 'True' && inputs.skip-deployment == 'false' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log Inputs for Helm
+        run: |
+          echo "skip-deployment: ${{ inputs.skip-deployment }}"
+          echo "HELM_ENABLED: ${{ needs.pre-deployment.outputs.HELM_ENABLED }}"
+      - name: Helm Deployment
+        run: echo "Running Helm Deployment..."
+
+  cerebro:
+    if: ${{ !failure() && !cancelled() && needs.pre-deployment.outputs.CEREBRO_ENABLED == 'True' && inputs.skip-deployment == 'false' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log Inputs for Cerebro
+        run: |
+          echo "skip-deployment: ${{ inputs.skip-deployment }}"
+          echo "CEREBRO_ENABLED: ${{ needs.pre-deployment.outputs.CEREBRO_ENABLED }}"
+      - name: Cerebro Deployment
+        run: echo "Running Cerebro Deployment..."
