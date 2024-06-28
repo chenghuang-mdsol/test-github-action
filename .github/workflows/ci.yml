@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: true
     outputs: 
-      HELM-PARAM1: ${{ steps.helm-bash.param1 }}
+      HELM-PARAM1: ${{ steps.helm-bash.outputs.param1 }}
     steps:
       - name: Log Inputs for Helm
         id: helm-bash
@@ -74,7 +74,7 @@ jobs:
     steps:
       - name: cleanup
         env:
-          PARAM1: ${{ needs.helm.HELM-PARAM1 }}
+          PARAM1: ${{ needs.helm.outputs.HELM-PARAM1 }}
         run: |
           echo $PARAM1
     
