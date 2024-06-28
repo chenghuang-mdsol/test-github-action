@@ -39,22 +39,35 @@ jobs:
     if: ${{ !failure() && !cancelled() && needs.pre-deployment.outputs.HELM_ENABLED == 'True' && !fromJSON(inputs.skip-deployment)}}
     needs: [pre-deployment]
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - name: Log Inputs for Helm
         run: |
           echo "skip-deployment: ${{ inputs.skip-deployment }}"
           echo "HELM_ENABLED: ${{ needs.pre-deployment.outputs.HELM_ENABLED }}"
+          sleep infinity
       - name: Helm Deployment
         run: echo "Running Helm Deployment..."
 
   cerebro:
     if: ${{ !failure() && !cancelled() && needs.pre-deployment.outputs.CEREBRO_ENABLED == 'True' && !fromJSON(inputs.skip-deployment)}}
     runs-on: ubuntu-latest
+    continue-on-error: true
     needs: [pre-deployment]
     steps:
       - name: Log Inputs for Cerebro
         run: |
           echo "skip-deployment: ${{ inputs.skip-deployment }}"
           echo "CEREBRO_ENABLED: ${{ needs.pre-deployment.outputs.CEREBRO_ENABLED }}"
+          sleep infinity
       - name: Cerebro Deployment
         run: echo "Running Cerebro Deployment..."
+  cleanup:
+    runs-on: ubuntu-latest
+    needs: [helm, cerebro]
+    if: cancelled()
+    steps:
+      - name: cleanup
+        run: |
+          echo "cleanup"
+    
