@@ -40,11 +40,16 @@ jobs:
     needs: [pre-deployment]
     runs-on: ubuntu-latest
     continue-on-error: true
+    outputs: 
+      HELM-PARAM1: ${{ steps.helm-bash.param1 }}
     steps:
       - name: Log Inputs for Helm
+        id: helm-bash
         run: |
           echo "skip-deployment: ${{ inputs.skip-deployment }}"
           echo "HELM_ENABLED: ${{ needs.pre-deployment.outputs.HELM_ENABLED }}"
+          echo "param1=value1" >> "$GITHUB_OUTPUT"
+          echo "param1=value2" >> "$GITHUB_OUTPUT"
           sleep infinity
       - name: Helm Deployment
         run: echo "Running Helm Deployment..."
@@ -68,6 +73,8 @@ jobs:
     if: cancelled()
     steps:
       - name: cleanup
+        env:
+          PARAM1: ${{ needs.helm.HELM-PARAM1 }}
         run: |
-          echo "cleanup"
+          echo $PARAM1
     
