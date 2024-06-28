@@ -36,7 +36,7 @@ jobs:
           echo "CEREBRO_ENABLED: ${{ steps.check.outputs.CEREBRO_ENABLED }}"
 
   helm:
-    if: ${{ !failure() && !cancelled() && needs.pre-deployment.outputs.HELM_ENABLED == 'True' && !inputs.skip-deployment }}
+    if: ${{ !failure() && !cancelled() && needs.pre-deployment.outputs.HELM_ENABLED == 'True' && inputs.skip-deployment == 'false'}}
     needs: [pre-deployment]
     runs-on: ubuntu-latest
     steps:
@@ -48,7 +48,7 @@ jobs:
         run: echo "Running Helm Deployment..."
 
   cerebro:
-    if: ${{ !failure() && !cancelled() && needs.pre-deployment.outputs.CEREBRO_ENABLED == 'True' && !inputs.skip-deployment }}
+    if: ${{ !failure() && !cancelled() && needs.pre-deployment.outputs.CEREBRO_ENABLED == 'True' && inputs.skip-deployment == 'false'}}
     runs-on: ubuntu-latest
     needs: [pre-deployment]
     steps:
