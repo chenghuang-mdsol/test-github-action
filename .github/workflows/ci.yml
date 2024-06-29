@@ -50,7 +50,6 @@ jobs:
           echo "HELM_ENABLED: ${{ needs.pre-deployment.outputs.HELM_ENABLED }}"
           echo "param1=value1" >> "$GITHUB_OUTPUT"
           echo "param1=value2" >> "$GITHUB_OUTPUT"
-          sleep infinity
       - name: Helm Deployment
         run: echo "Running Helm Deployment..."
 
@@ -64,7 +63,6 @@ jobs:
         run: |
           echo "skip-deployment: ${{ inputs.skip-deployment }}"
           echo "CEREBRO_ENABLED: ${{ needs.pre-deployment.outputs.CEREBRO_ENABLED }}"
-          sleep infinity
       - name: Cerebro Deployment
         run: echo "Running Cerebro Deployment..."
   cleanup:
