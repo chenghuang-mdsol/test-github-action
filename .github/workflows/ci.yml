@@ -63,6 +63,12 @@ jobs:
         run: |
           echo "skip-deployment: ${{ inputs.skip-deployment }}"
           echo "CEREBRO_ENABLED: ${{ needs.pre-deployment.outputs.CEREBRO_ENABLED }}"
+          echo "::group::group0"
+          echo "in group0"
+          echo "::group::group1"
+          echo "in group1"
+          echo "::endgroup::"
+          echo "::endgroup::"
       - name: Cerebro Deployment
         run: echo "Running Cerebro Deployment..."
   cleanup:
