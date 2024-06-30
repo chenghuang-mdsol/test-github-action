@@ -64,14 +64,16 @@ jobs:
           echo "skip-deployment: ${{ inputs.skip-deployment }}"
           echo "CEREBRO_ENABLED: ${{ needs.pre-deployment.outputs.CEREBRO_ENABLED }}"
           echo "::group::group0"
-          echo "in group0-0"
-          echo "::group::group1"
-          echo "in group1"
-          echo "in group0-1"
+          echo "${{ github.workspace }}"
           echo "::endgroup::"
-          echo "::endgroup::"
+          mkdir "reports/11"
+          echo "123" >> reports/11/1.txt
       - name: Cerebro Deployment
         run: echo "Running Cerebro Deployment..."
+      - uses: actions/upload-artifact@v4
+        with:
+          name: OCX Reports
+          path: reports
   cleanup:
     runs-on: ubuntu-latest
     needs: [helm, cerebro]
