@@ -28,7 +28,7 @@ jobs:
       - uses: jfrog/setup-jfrog-cli@v4
         env:
           # JFrog platform url (for example: https://acme.jfrog.io)
-          JF_URL: https://mdsol.jfrog.io
+          JF_URL: https://mdsol.jfrog.io/artifactory
           JF_USER: ${{ secrets.ARTIFACTORY_PREPROD_USERNAME }}
           JF_PASSWORD: ${{ secrets.ARTIFACTORY_PREPROD_PASSWORD }}
       - run: |
