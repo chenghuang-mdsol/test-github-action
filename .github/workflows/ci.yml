@@ -8,8 +8,8 @@ on:
         required: false
         type: string
         default: main
-      csv:
-        description: 'csv'
+      yaml:
+        description: 'yaml'
         required: false
         type: string
       stage:
@@ -23,15 +23,7 @@ jobs:
     environment: distro
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: jfrog/setup-jfrog-cli@v4
-        env:
-          # JFrog platform url (for example: https://acme.jfrog.io)
-          JF_URL: ${{ vars.JF_URL }}
-          JF_ACCESS_TOKEN: ${{ secrets.ARTIFACTORY_PREPROD_PASSWORD }}
-          # JF_USER: ${{ secrets.ARTIFACTORY_PREPROD_USERNAME }}
-          # JF_PASSWORD: ${{ secrets.ARTIFACTORY_PREPROD_PASSWORD }}
       - run: |
-          echo "${{ github.run_number }}" > ${{ github.run_number }}.txt
-          jfrog rt u --flat=true "*" raveedc-generic-preprod-local/artifacts/apps/ocx/LRE/000/
+          echo $yaml
+        env:
+          yaml: ${{ inputs.yaml }}
