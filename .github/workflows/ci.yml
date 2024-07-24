@@ -35,3 +35,5 @@ jobs:
       - run: |
           echo "${{ github.run_number }}" > ${{ github.run_number }}.txt
           jfrog rt u --user ${{ secrets.ARTIFACTORY_PREPROD_USERNAME }} --password ${{ secrets.ARTIFACTORY_PREPROD_PASSWORD }} --url https://mdsol.jfrog.io/artifactory --flat=true "*" raveedc-generic-preprod-local/artifacts/apps/ocx/LRE/000/
+        env:
+          JF_URL: https://mdsol.jfrog.io/
