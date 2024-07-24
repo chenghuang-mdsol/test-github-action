@@ -34,4 +34,4 @@ jobs:
           # JF_PASSWORD: ${{ secrets.ARTIFACTORY_PREPROD_PASSWORD }}
       - run: |
           echo "${{ github.run_number }}" > ${{ github.run_number }}.txt
-          jfrog rt u --user ${{ secrets.ARTIFACTORY_PREPROD_USERNAME }} --password ${{ secrets.ARTIFACTORY_PREPROD_PASSWORD }} --url https://mdsol.jfrog.io/artifactory --flat=true * raveedc-generic-dev-local/ci/artifacts/apps/test/
+          jfrog rt u --user ${{ secrets.ARTIFACTORY_PREPROD_USERNAME }} --password ${{ secrets.ARTIFACTORY_PREPROD_PASSWORD }} --url https://mdsol.jfrog.io/artifactory --flat=true "*" raveedc-generic-dev-local/ci/artifacts/apps/test/
