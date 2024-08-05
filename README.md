@@ -15,6 +15,6 @@
 
 
 #### Unit Tests
-|Total|Passed:heavy_check_mark:|Skipped:zzz:|Failed:x:|Time:watch:|
+|Total|Passed ✔️|Skipped 💤|Failed :x: |Time ⌚|
 |:--|:--|:--|:--|:--|
 |100|50|0|50|60:00|
