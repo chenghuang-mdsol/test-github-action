@@ -12,3 +12,9 @@
 
 > [!CAUTION]
 > Advises about risks or negative outcomes of certain actions.
+
+
+#### Unit Tests
+|Total|Passed:heavy_check_mark:|Skipped:zzz:|Failed:x:|Time:watch:|
+|:--|:--|:--|:--|:--|
+|100|50|0|50|60:00|
