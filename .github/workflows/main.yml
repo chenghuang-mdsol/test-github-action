@@ -19,13 +19,16 @@ on:
         type: string
 
 jobs:
-- name: Post Action
-  uses: srz-zumix/post-run-action@v1
-  with:
-    shell: pwsh -command ". '{0}'"
-    post-run: |
-      Write-Host "Post Actions text"
-- name: Shell command
-  run: |
-    Write-Host "Some command"
-  shell: pwsh
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Post Action
+      uses: srz-zumix/post-run-action@v1
+      with:
+        shell: pwsh -command ". '{0}'"
+        post-run: |
+          Write-Host "Post Actions text"
+    - name: Shell command
+      run: |
+        Write-Host "Some command"
+      shell: pwsh
