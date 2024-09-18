@@ -19,8 +19,13 @@ on:
         type: string
 
 jobs:
-  call_cerebro:
-    uses: ./.github/workflows/cerebro.yml
-    with:
-      environment: ${{ inputs.environment || 'sandbox' }}
-    secrets: inherit
+- name: Post Action
+  uses: srz-zumix/post-run-action@v1
+  with:
+    shell: pwsh -command ". '{0}'"
+    post-run: |
+      Write-Host "Post Actions text"
+- name: Shell command
+  run: |
+    Write-Host "Some command"
+  shell: pwsh
