@@ -23,11 +23,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Post Action
+      id: test-pwsh
       uses: srz-zumix/post-run-action@v1
       with:
-        shell: pwsh -command ". '{0}'"
+        shell: pwsh
         post-run: |
-          Write-Host "Post Actions text"
+          Write-Host "Post Run"
     - name: Shell command
       run: |
         Write-Host "Some command"
