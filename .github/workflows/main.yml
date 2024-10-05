@@ -28,7 +28,11 @@ jobs:
       with:
         shell: pwsh
         post-run: |
-          Write-Host "Post Run"
+          $arr = 1..8
+          foreach($a in $arr)
+          {
+            Write $a
+          }
     - name: Shell command
       run: |
         Write-Host "Some command"
