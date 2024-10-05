@@ -36,4 +36,5 @@ jobs:
     - name: Shell command
       run: |
         Write-Host "Some command"
+        Start-Sleep 1000
       shell: pwsh
