@@ -40,4 +40,4 @@ jobs:
     steps:
       - name: Show Matrix Data
         run: |
-          echo "Running job for name: ${matrix.name} with value: ${matrix.value}"
+          echo "Running job for name: ${{matrix.name}} with value: ${{matrix.value}}"
