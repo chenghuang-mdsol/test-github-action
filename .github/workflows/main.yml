@@ -19,22 +19,25 @@ on:
         type: string
 
 jobs:
-  test:
+  create-matrix:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.generate-matrix.outputs.matrix }}
     steps:
-    - name: Post Action
-      id: test-pwsh
-      uses: srz-zumix/post-run-action@v1
-      with:
-        shell: pwsh
-        post-run: |
-          $arr = 1..8
-          foreach($a in $arr)
-          {
-            Write-Host $a
-          }
-    - name: Shell command
-      run: |
-        Write-Host "Some command"
-        Start-Sleep 1000
-      shell: pwsh
+      - name: Generate Matrix JSON
+        id: generate-matrix
+        run: |
+          # Generate JSON matrix and save as output
+          echo '{"include":[{"name":"Test1","value":"Value1"},{"name":"Test2","value":"Value2"}]}' > matrix.json
+          MATRIX_JSON=$(cat matrix.json)
+          echo "::set-output name=matrix::$MATRIX_JSON"
+      
+  consume-matrix:
+    needs: create-matrix
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{fromJson(needs.create-matrix.outputs.matrix) }}
+    steps:
+      - name: Show Matrix Data
+        run: |
+          echo "Running job for name: ${matrix.name} with value: ${matrix.value}"
