@@ -19,7 +19,7 @@ on:
         type: string
 
 jobs:
-  setup:
+  create-matrix:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.generate-matrix.outputs.matrix }}
@@ -28,16 +28,16 @@ jobs:
         id: generate-matrix
         run: |
           # Generate JSON matrix and save as output
-          echo '{"include":[{"name":"Test1","value":"Value1"},{"name":"Test2","value":"Value2"}]}' > matrix.json
+          echo '{"Include":[{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":0},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":1},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":2},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":3},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":4},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":5},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":6},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":7},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":8},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":9},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":10},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":11},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":12},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":13},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":14},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":15},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":16},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":17},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":18},{"QueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8","ResultQueueName":"rg-test-110-96af3a96-6f69-4139-8356-e6b9ef138fc8-result","AgentID":19}]}' > matrix.json
           MATRIX_JSON=$(cat matrix.json)
           echo "::set-output name=matrix::$MATRIX_JSON"
       
   consume-matrix:
-    needs: [setup]
+    needs: create-matrix
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{ fromJson(needs.setup.outputs.matrix) }}
+      matrix: ${{fromJson(needs.create-matrix.outputs.matrix) }}
     steps:
-      - name: "Show Matrix Data ${{matrix.name}} with value: ${{matrix.value}}"
+      - name: Show Matrix Data
         run: |
-          echo "Running job for name: ${{matrix.name}} with value: ${{matrix.value}}"
+          echo "Running job for name: ${{matrix.QueueName}} with value: ${{matrix.ResultQueueName}}"
