@@ -37,6 +37,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: ${{fromJson(needs.create-matrix.outputs.matrix) }}
+    env:
+      QUEUE_NAME: ${{ matrix.QueueName }}
+      RESULT_QUEUE_NAME: ${{ matrix.ResultQueueName }}
     steps:
       - name: Show Matrix Data
         run: |
