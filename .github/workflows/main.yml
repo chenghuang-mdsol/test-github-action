@@ -19,7 +19,7 @@ on:
         type: string
 
 jobs:
-  create-matrix:
+  setup:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.generate-matrix.outputs.matrix }}
@@ -33,11 +33,11 @@ jobs:
           echo "::set-output name=matrix::$MATRIX_JSON"
       
   consume-matrix:
-    needs: create-matrix
+    needs: [setup]
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{fromJson(needs.create-matrix.outputs.matrix) }}
+      matrix: ${{ fromJson(needs.setup.outputs.matrix) }}
     steps:
-      - name: Show Matrix Data
+      - name: "Show Matrix Data ${{matrix.name}} with value: ${{matrix.value}}"
         run: |
           echo "Running job for name: ${{matrix.name}} with value: ${{matrix.value}}"
