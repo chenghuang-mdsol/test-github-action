@@ -24,12 +24,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: baileyjm02/markdown-to-pdf@v1
-        with:
-          input_dir: mds
-          output_dir: ./pdfs/
+      - uses: actions/setup-node@v4
       - run: |
-          Get-ChildItem . -Recurse
+          npm install -g md-to-pdf
+          md-to-pdf --md-file-encoding UTF8 --pdf-options '{ "format":"a4", "printBackground":true }' `
+           --stylesheet ./styles/markdown-pdf.css `
+           --stylesheet ./styles/vscode.css `
+           --stylesheet ./styles/markdown.css `
+           --stylesheet ./styles/tomorrow.css `
+           ./mds/*.md
+          cp ./mds/*.pdf ./pdfs/
         shell: pwsh
       - uses: actions/upload-artifact@v4
         with:
