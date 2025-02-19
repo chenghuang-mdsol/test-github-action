@@ -27,7 +27,7 @@ jobs:
       - uses: actions/setup-node@v4
       - run: |
           npm install -g md-to-pdf
-          md-to-pdf --md-file-encoding UTF8 --pdf-options '{ "format":"a4", "printBackground":true }' `
+          md-to-pdf --md-file-encoding UTF8 --pdf-options '{ "format":"a4", "printBackground":true }' --launch-options '{ "args": ["--no-sandbox"] }' `
            --stylesheet ./styles/markdown-pdf.css `
            --stylesheet ./styles/vscode.css `
            --stylesheet ./styles/markdown.css `
