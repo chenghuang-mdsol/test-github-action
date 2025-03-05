@@ -16,7 +16,6 @@ on:
         description: 'stage'
         required: false
         type: string
-        default: main
       foo:
         description: 'foo boolean'
         required: false
