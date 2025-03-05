@@ -24,12 +24,12 @@ on:
 
 jobs:
   job1:
-    environment: distro
+    environment: ${{ inputs.stage || distro }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: |
-          Write-Host '${{ inputs.foo }}'
+          Write-Host 'TEST_VAR=${{ vars.TEST_VAR }}'
         shell: pwsh
       # - uses: actions/setup-node@v4
       # - run: |
