@@ -24,7 +24,7 @@ on:
 
 jobs:
   job1:
-    environment: ${{ inputs.stage || 'distro' }}
+    environment: ${{ inputs.stage != '' && inputs.stage || 'distro' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
