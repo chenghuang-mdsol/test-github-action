@@ -22,7 +22,11 @@ on:
         description: 'foo boolean'
         required: false
         type: boolean
-
+      rave-edc-ui-ref:
+        type: string
+        description: Rave EDC UI ref
+        required: true
+        default: ${{ github.head_ref || github.ref  }}
 jobs:
   job1:
     runs-on: ubuntu-latest
