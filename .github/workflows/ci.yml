@@ -22,11 +22,7 @@ on:
         description: 'foo boolean'
         required: false
         type: boolean
-      rave-edc-ui-ref:
-        type: string
-        description: Rave EDC UI ref
-        required: true
-        default: 
+
 jobs:
   job1:
     runs-on: ubuntu-latest
@@ -36,5 +32,5 @@ jobs:
           $str += "- tag1`n"
           $str += "- tag2`n"
           $str += "- tag3`n</details>"
-          $str | Add-Content $Env:GITHUB_SUMMARY
+          $str | Add-Content $Env:GITHUB_STEP_SUMMARY
         shell: pwsh
