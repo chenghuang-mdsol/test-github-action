@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          $str = "<details open><summary>Queued Tags</summary>"
+          $str = "<details open><summary>Panel example</summary>"
           $str += "<ul><li>tag1</li>"
           $str += "<li>tag2</li>"
           $str += "<li>tag3</li>"
@@ -37,7 +37,7 @@ jobs:
         shell: pwsh
 
       - run: |
-          $str = "Queued Tags:`n"
+          $str = "List example:`n"
           $str += "- tag1`n"
           $str += "- tag2`n"
           $str += "- tag3`n"
