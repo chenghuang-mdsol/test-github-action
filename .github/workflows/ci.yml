@@ -32,7 +32,7 @@ jobs:
           $str += "<ul><li>tag1</li>"
           $str += "<li>tag2</li>"
           $str += "<li>tag3</li>"
-          $str += "</ul></details>`n`n"
+          $str += "</ul></details><p /><p />"
           $str | Add-Content $Env:GITHUB_STEP_SUMMARY
           $str = "### Test"
           $str | Add-Content $Env:GITHUB_STEP_SUMMARY
