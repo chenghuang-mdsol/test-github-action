@@ -36,5 +36,5 @@ jobs:
           $str += "- tag1`n"
           $str += "- tag2`n"
           $str += "- tag3`n</details>"
-          $str | Add-Content $GITHUB_SUMMARY
+          $str | Add-Content $Env:GITHUB_SUMMARY
         shell: pwsh
