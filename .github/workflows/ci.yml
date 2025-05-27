@@ -26,10 +26,15 @@ on:
         type: string
         description: Rave EDC UI ref
         required: true
-        default: ${{ github.head_ref || github.ref  }}
+        default: 
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "GITHUB_SHA_SHORT=abcdefgh" >> $GITHUB_ENV
-        shell: bash
+      - run: |
+          $str = "<details><summary>Queued Tags</summary>`n"
+          $str += "- tag1`n"
+          $str += "- tag2`n"
+          $str += "- tag3`n</details>"
+          $str | Add-Content $GITHUB_SUMMARY
+        shell: pwsh
