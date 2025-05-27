@@ -34,9 +34,7 @@ jobs:
           $str += "<li>tag3</li>"
           $str += "</ul></details>"
           $str | Add-Content $Env:GITHUB_STEP_SUMMARY
-        shell: pwsh
-
-      - run: |
           $str = "### Test"
           $str | Add-Content $Env:GITHUB_STEP_SUMMARY
         shell: pwsh
+
