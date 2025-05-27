@@ -28,9 +28,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          $str = "<details><summary>Queued Tags</summary>`n"
+          $str = "<details open><summary>Queued Tags</summary>`n"
           $str += "- tag1`n"
           $str += "- tag2`n"
           $str += "- tag3`n</details>"
+          $str | Add-Content $Env:GITHUB_STEP_SUMMARY
+        shell: pwsh
+
+      - run: |
+          $str = "Queued Tags:`n"
+          $str += "- tag1`n"
+          $str += "- tag2`n"
+          $str += "- tag3`n"
           $str | Add-Content $Env:GITHUB_STEP_SUMMARY
         shell: pwsh
