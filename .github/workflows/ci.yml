@@ -37,9 +37,6 @@ jobs:
         shell: pwsh
 
       - run: |
-          $str = "List example:`n"
-          $str += "- tag1`n"
-          $str += "- tag2`n"
-          $str += "- tag3`n"
+          $str = "### Test"
           $str | Add-Content $Env:GITHUB_STEP_SUMMARY
         shell: pwsh
