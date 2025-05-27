@@ -31,7 +31,7 @@ jobs:
           $str = "<details open><summary>Queued Tags</summary>"
           $str += "<ul><li>tag1</li>"
           $str += "<li>tag2</li>"
-          $str += "<li>tag3</li>
+          $str += "<li>tag3</li>"
           $str += "</ul></details>"
           $str | Add-Content $Env:GITHUB_STEP_SUMMARY
         shell: pwsh
