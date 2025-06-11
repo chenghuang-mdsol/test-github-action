@@ -27,15 +27,12 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
+    
     steps:
+      - uses: helmfile/helmfile-action@v2.0.4
+        with:
+          helmfile-args: version
       - run: |
-          $str = "<details open><summary>Panel example</summary>"
-          $str += "<ul><li>tag1</li>"
-          $str += "<li>tag2</li>"
-          $str += "<li>tag3</li>"
-          $str += "</ul></details>`n"
-          $str | Add-Content $Env:GITHUB_STEP_SUMMARY
-          $str = "### Test"
-          $str | Add-Content $Env:GITHUB_STEP_SUMMARY
+          helmfile version
         shell: pwsh
 
