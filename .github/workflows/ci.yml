@@ -23,6 +23,43 @@ on:
         description: 'foo boolean'
         required: false
         type: boolean
+      foo1:
+        description: 'foo boolean'
+        required: false
+        type: boolean
+      foo2:
+        description: 'foo boolean'
+        required: false
+        type: boolean        
+      foo3:
+        description: 'foo boolean'
+        required: false
+        type: boolean
+      foo4:
+        description: 'foo boolean'
+        required: false
+        type: boolean
+      foo5:
+        description: 'foo boolean'
+        required: false
+        type: boolean        
+      foo6:
+        description: 'foo boolean'
+        required: false
+        type: boolean
+      foo7:
+        description: 'foo boolean'
+        required: false
+        type: boolean
+      foo8:
+        description: 'foo boolean'
+        required: false
+        type: boolean        
+      foo9:
+        description: 'foo boolean'
+        required: false
+        type: boolean
+
 
 jobs:
   job1:
