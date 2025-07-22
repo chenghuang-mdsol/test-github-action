@@ -8,7 +8,7 @@ metadata:
 spec:
   project: rave
   destination:
-    name: default
+    name: in-cluster
     namespace: test-cheng
   source:
     chart: gha-runner-scale-set-controller
