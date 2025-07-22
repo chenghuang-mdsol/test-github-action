@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rave-ci-arc-controller-test-cheng
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: rave
+  destination:
+    name: raveops-eks
+    namespace: test-cheng
+  source:
+    chart: gha-runner-scale-set-controller
+    repoURL: oci://ghcr.io/actions/actions-runner-controller-charts
+    targetRevision: 0.12.1
+    plugin:
+      env:
+        - name: HELM_VALUES
+          value: |
+            fullnameOverride: arc-controller
+            flags:
+              watchSingleNamespace: test-cheng
