@@ -11,6 +11,8 @@ spec:
     name: in-cluster
     namespace: test-cheng
   source:
+    helm:
+      releaseName: arc-controller-test-cheng
     chart: gha-runner-scale-set-controller
     repoURL: ghcr.io/actions/actions-runner-controller-charts
     targetRevision: 0.12.1
