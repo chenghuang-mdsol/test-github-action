@@ -12,7 +12,7 @@ spec:
     namespace: test-cheng
   source:
     helm:
-      releaseName: arc-controller-test-cheng
+      releaseName: actc
       parameters:
         - name: flags.watchSingleNamespace
           value: test-cheng
