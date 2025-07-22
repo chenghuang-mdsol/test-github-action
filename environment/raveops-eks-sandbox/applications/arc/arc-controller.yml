@@ -11,8 +11,7 @@ spec:
     name: in-cluster
     namespace: test-cheng
   source:
-    chart: gha-runner-scale-set-controller
-    repoURL: oci://ghcr.io/actions/actions-runner-controller-charts
+    repoURL: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
     targetRevision: 0.12.1
     plugin:
       env:
