@@ -12,7 +12,7 @@ spec:
     namespace: test-cheng
   source:
     path: .
-    repoURL: ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
+    repoURL: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
     targetRevision: 0.12.1
     plugin:
       env:
