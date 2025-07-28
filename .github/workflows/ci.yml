@@ -2,7 +2,8 @@
 name: "Try"
 run-name: "Try run-name: ${{ github.env.GITHUB_SHA_SHORT}}"
 on:
-  push:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
   workflow_dispatch:
     inputs:
       rave-db-ref:
@@ -39,37 +40,12 @@ on:
         description: 'foo boolean'
         required: false
         type: boolean
-      foo5:
-        description: 'foo boolean'
-        required: false
-        type: boolean        
-      foo6:
-        description: 'foo boolean'
-        required: false
-        type: boolean
-      foo7:
-        description: 'foo boolean'
-        required: false
-        type: boolean
-      foo8:
-        description: 'foo boolean'
-        required: false
-        type: boolean        
-      foo9:
-        description: 'foo boolean'
-        required: false
-        type: boolean
-
 
 jobs:
   job1:
     runs-on: ubuntu-latest
-    
     steps:
-      - uses: helmfile/helmfile-action@v2.0.4
-        with:
-          helmfile-args: version
       - run: |
-          helmfile version
+          $Env:GITHUB_EVENT_PULL_REQUEST_BODY
         shell: pwsh
 
