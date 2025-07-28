@@ -46,6 +46,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          ls env:
-        shell: pwsh
+          printenv | sort
+        shell: bash
 
