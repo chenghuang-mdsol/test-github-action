@@ -46,6 +46,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          $Env:GITHUB_EVENT_PULL_REQUEST_BODY
+          ls env:
         shell: pwsh
 
