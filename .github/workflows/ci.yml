@@ -1,51 +1,22 @@
+name: Debug Runner
 
-name: "Try"
-run-name: "Try run-name: ${{ github.env.GITHUB_SHA_SHORT}}"
 on:
-  pull_request:
-    types: [opened, synchronize, reopened, edited]
   workflow_dispatch:
     inputs:
-      rave-db-ref:
-        description: 'RaveDB Reference, use commit hash, branch name or tag'
-        required: false
-        type: string
-        default: main
-      yaml:
-        description: 'yaml'
-        required: false
-        type: string
-      stage:
-        description: 'stage'
-        required: false
-        type: environment
-        default: main
-      foo:
-        description: 'foo boolean'
-        required: false
-        type: boolean
-      foo1:
-        description: 'foo boolean'
-        required: false
-        type: boolean
-      foo2:
-        description: 'foo boolean'
-        required: false
-        type: boolean        
-      foo3:
-        description: 'foo boolean'
-        required: false
-        type: boolean
-      foo4:
-        description: 'foo boolean'
-        required: false
-        type: boolean
-
+      runs-on:
+        description: Runs on
+        required: true
+        type: choice
+        options:
+        - '"rave-ci-lab1"'
+        - '"rave-ci-hdc"'
+        - '["self-hosted", "ubuntu-latest"]'
 jobs:
-  job1:
-    runs-on: ubuntu-latest
+  sleep-infinity:
+    name: Start Runner and hang
+    runs-on: ${{ fromJSON(inputs.runs-on) }}
     steps:
-      - run: |
-          $Env:GITHUB_EVENT_PULL_REQUEST_BODY
-        shell: pwsh
-
+      - name: Sleep infinity
+        id: sleep-infinity
+        run: sleep infinity
+        shell: bash
