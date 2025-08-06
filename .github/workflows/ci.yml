@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test0
+        if: (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'need e2e')) || (github.event.issue.pull_request && contains(github.event.comment.body, '/e2e'))
         run: |
-          Write-Host "Labels: ${{ github.event.pull_request.labels }}"
+          Write-Host "Labels: ${{ toJson(github.event.pull_request.labels) }}"
           Write-Host "Comment Body: ${{ github.event.comment.body }}"
         shell: pwsh
