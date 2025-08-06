@@ -1,22 +1,13 @@
-name: Debug Runner
+name: Test PR
 
 on:
-  workflow_dispatch:
-    inputs:
-      runs-on:
-        description: Runs on
-        required: true
-        type: choice
-        options:
-        - '"rave-ci-lab1"'
-        - '"rave-ci-hdc"'
-        - '["self-hosted", "ubuntu-latest"]'
+  pull_request:
 jobs:
-  sleep-infinity:
+  test-trigger:
     name: Start Runner and hang
-    runs-on: ${{ fromJSON(inputs.runs-on) }}
+    runs-on: ubuntu-latest
     steps:
-      - name: Sleep infinity
-        id: sleep-infinity
-        run: sleep infinity
+      - name: Test
+        id: test
+        run: echo ${{ github.event.pull_request.labels }}
         shell: bash
