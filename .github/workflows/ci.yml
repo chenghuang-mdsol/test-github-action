@@ -10,8 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test0
-        if: (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'need e2e')) || (github.event.issue.pull_request && contains(github.event.comment.body, '/e2e'))
+        if: (github.event_name == 'pull_request' || (github.event.issue.pull_request && contains(github.event.comment.body, '/e2e')) && contains(github.event.pull_request.labels.*.name, 'need e2e'))
         run: |
           Write-Host "Labels: ${{ toJson(github.event.pull_request.labels) }}"
           Write-Host "Comment Body: ${{ github.event.comment.body }}"
+          if ("${{ github.event_name }}" -eq "issue_comment") {
+            gh api repos/${{ github.repository }}/issues/comments/${{ github.event.comment.id }} -X PATCH -f body='You requested E2E testing.'
+          }
+          
         shell: pwsh
