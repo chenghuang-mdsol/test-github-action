@@ -2,12 +2,15 @@ name: Test PR
 
 on:
   pull_request:
+  issue_comment:
+    types: [created]
 jobs:
   test-trigger:
     name: Start Runner and hang
     runs-on: ubuntu-latest
     steps:
-      - name: Test
-        id: test
-        run: echo ${{ github.event.pull_request.labels }}
-        shell: bash
+      - name: Test0
+        run: |
+          Write-Host "Labels: ${{ github.event.pull_request.labels }}"
+          Write-Host "Comment Body: ${{ github.event.comment.body }}"
+        shell: pwsh
