@@ -6,10 +6,10 @@ on:
 jobs:
   test-trigger:
     name: Start Runner and hang
+    if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'need e2e')
     runs-on: ubuntu-latest
     steps:
       - name: Test0
-        if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'need e2e')
         run: |
-          Write-Host "Labels: ${{ toJson(github.event.pull_request.labels) }}"
+          Write-Host "Labels: has labels"
         shell: pwsh
