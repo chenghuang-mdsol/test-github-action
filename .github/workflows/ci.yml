@@ -1,17 +1,10 @@
 name: Test PR
 
 on:
-  pull_request:
-  issue_comment:
-    types: [created]
+  workflow_dispatch:
 jobs:
-  test-trigger:
+  test-0:
     name: Start Runner and hang
-    runs-on: ubuntu-latest
-    steps:
-      - name: Test0
-        if: (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'need e2e')) || (github.event.issue.pull_request && contains(github.event.comment.body, '/e2e'))
-        run: |
-          Write-Host "Labels: ${{ toJson(github.event.pull_request.labels) }}"
-          Write-Host "Comment Body: ${{ github.event.comment.body }}"
-        shell: pwsh
+    uses: .github/workflows/test-runs-on@main
+    with:
+      runs-on: ubuntu-latest
