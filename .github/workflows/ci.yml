@@ -10,7 +10,7 @@ jobs:
       runs-on: ubuntu-latest
   
   test-multiple-runners:
-    name: Test Multiple Runners
+    name: Test Multiple Runners (Array Format)
     uses: ./.github/workflows/test-runs-on.yml
     with:
-      runs-on: '["ubuntu-latest", "X64"]'
+      runs-on: '["ubuntu-latest"]'
