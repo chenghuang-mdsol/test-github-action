@@ -4,7 +4,7 @@ on:
       runs-on:
         type: string
         description: Runs on (single label)
-        required: true
+        required: false
       runs-on-array:
         type: string
         description: Runs on array (JSON format)
