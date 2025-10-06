@@ -13,4 +13,4 @@ jobs:
     name: Test Multiple Runners (Array Format)
     uses: ./.github/workflows/test-runs-on.yml
     with:
-      runs-on-array: '["ubuntu-latest", "x64"]'
+      runs-on-array: '["linux", "x64"]'
