@@ -8,7 +8,7 @@ on:
 jobs:
   check-parameters:
     name: Cyclops Url
-    runs-on: ${{ fromJson(inputs.runs-on) || inputs.runs-on }}
+    runs-on: ${{ startsWith(inputs.runs-on, '[') && fromJson(inputs.runs-on) || inputs.runs-on }}
     # runs-on: ${{ inputs.runs-on }}
     steps:
       - name: test
