@@ -8,8 +8,8 @@ on:
 jobs:
   check-parameters:
     name: Cyclops Url
-    # runs-on: ${{ toJson(inputs.runs-on) || inputs.runs-on }}
-    runs-on: ${{ inputs.runs-on }}
+    runs-on: ${{ fromJson(inputs.runs-on) }}
+    # runs-on: ${{ inputs.runs-on }}
     steps:
       - name: test
         run: |
