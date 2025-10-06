@@ -3,8 +3,14 @@ name: Test PR
 on:
   workflow_dispatch:
 jobs:
-  test-0:
-    name: Start Runner and hang
+  test-single-runner:
+    name: Test Single Runner
     uses: ./.github/workflows/test-runs-on.yml
     with:
       runs-on: ubuntu-latest
+  
+  test-multiple-runners:
+    name: Test Multiple Runners
+    uses: ./.github/workflows/test-runs-on.yml
+    with:
+      runs-on: '["ubuntu-latest", "self-hosted"]'
