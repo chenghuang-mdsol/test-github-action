@@ -20,7 +20,7 @@ on:
 
 jobs:
   create-matrix:
-    runs-on: [ubuntu-latest, linux]
+    runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.generate-matrix.outputs.matrix }}
     steps:
