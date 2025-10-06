@@ -15,6 +15,12 @@ jobs:
     runs-on: ${{ inputs.runs-on-array && fromJson(inputs.runs-on-array) || inputs.runs-on }}
     # runs-on: ${{ inputs.runs-on }}
     steps:
+      - name: Debug inputs
+        run: |
+          echo "runs-on input: '${{ inputs.runs-on }}'"
+          echo "runs-on-array input: '${{ inputs.runs-on-array }}'"
+          echo "fromJson result: '${{ inputs.runs-on-array && fromJson(inputs.runs-on-array) }}'"
+        shell: bash
       - name: test
         run: |
           echo "test"
