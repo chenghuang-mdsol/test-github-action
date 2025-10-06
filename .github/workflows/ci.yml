@@ -13,4 +13,5 @@ jobs:
     name: Test Multiple Runners (Array Format)
     uses: ./.github/workflows/test-runs-on.yml
     with:
+      runs-on: ubuntu-latest
       runs-on-array: '["ubuntu-latest"]'

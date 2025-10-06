@@ -3,17 +3,16 @@ on:
     inputs:
       runs-on:
         type: string
-        description: Runs on (single label or YAML array)
-        required: false
+        description: Runs on (single label)
+        required: true
       runs-on-array:
-        type: boolean
-        description: Whether the runs-on input is an array (YAML format)
+        type: string
+        description: Runs on array (JSON format)
         required: false
-        default: false
 jobs:
   check-parameters:
     name: Cyclops Url
-    runs-on: ${{ inputs.runs-on || fromJson(inputs.runs-on-array) }}
+    runs-on: ${{ inputs.runs-on-array && fromJson(inputs.runs-on-array) || inputs.runs-on }}
     # runs-on: ${{ inputs.runs-on }}
     steps:
       - name: test
