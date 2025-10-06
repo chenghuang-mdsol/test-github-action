@@ -5,6 +5,6 @@ on:
 jobs:
   test-0:
     name: Start Runner and hang
-    uses: .github/workflows/test-runs-on.yml@main
+    uses: ./.github/workflows/test-runs-on.yml@main
     with:
       runs-on: ubuntu-latest
