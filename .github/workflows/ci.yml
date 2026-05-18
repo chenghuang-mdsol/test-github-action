@@ -13,7 +13,7 @@ jobs:
       - name: Override
         shell: pwsh
         run: |
-          "AAA=ccc" | Add-Content $GITHUB_ENV
+          "AAA=ccc" | Add-Content $Env:GITHUB_ENV
 
       - name: Show
         shell: bash
