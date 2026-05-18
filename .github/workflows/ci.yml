@@ -11,9 +11,9 @@ jobs:
 
     steps:
       - name: Override
-        shell: bash
+        shell: pwsh
         run: |
-          echo "AAA=ccc" >> $GITHUB_ENV
+          "AAA=ccc" | Add-Content $GITHUB_ENV
 
       - name: Show
         shell: bash
