@@ -1,27 +1,20 @@
 on:
-  workflow_call:
-    inputs:
-      runs-on:
-        type: string
-        description: Runs on (single label)
-        required: false
-      runs-on-array:
-        type: string
-        description: Runs on array (JSON format)
-        required: false
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - edited
 jobs:
-  check-parameters:
+  output-pr-event:
     name: Cyclops Url
-    runs-on: ${{ inputs.runs-on-array && fromJson(inputs.runs-on-array) || inputs.runs-on }}
-    # runs-on: ${{ inputs.runs-on }}
+    runs-on: ubuntu-latest
     steps:
       - name: Debug inputs
         run: |
-          echo "runs-on input: '${{ inputs.runs-on }}'"
-          echo "runs-on-array input: '${{ inputs.runs-on-array }}'"
-          echo "fromJson result: '${{ inputs.runs-on-array && fromJson(inputs.runs-on-array) }}'"
-        shell: bash
-      - name: test
-        run: |
-          echo "test"
-        shell: bash
+          Get-Content $env:GITHUB_EVENT_PATH | Out-File event.json
+        shell: pwsh
+      - uses: actions/upload-artifact@v7
+        with:
+          name: event.json
+          path: event.json
