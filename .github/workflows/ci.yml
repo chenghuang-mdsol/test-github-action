@@ -3,14 +3,19 @@ name: Test PR
 on:
   workflow_dispatch:
 jobs:
-  test-single-runner:
-    name: Test Single Runner
-    uses: ./.github/workflows/test-runs-on.yml
-    with:
-      runs-on: ubuntu-latest
-  
-  test-multiple-runners:
-    name: Test Multiple Runners (Array Format)
-    uses: ./.github/workflows/test-runs-on.yml
-    with:
-      runs-on-array: '["self-hosted", "Windows"]'
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      AAA: bbb
+
+    steps:
+      - name: Override
+        shell: bash
+        run: |
+          echo "AAA=ccc" >> $GITHUB_ENV
+
+      - name: Show
+        shell: bash
+        run: |
+          echo $AAA
