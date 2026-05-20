@@ -1,27 +1,12 @@
 on:
-  workflow_call:
-    inputs:
-      runs-on:
-        type: string
-        description: Runs on (single label)
-        required: false
-      runs-on-array:
-        type: string
-        description: Runs on array (JSON format)
-        required: false
+  pull_request:
 jobs:
-  check-parameters:
-    name: Cyclops Url
-    runs-on: ${{ inputs.runs-on-array && fromJson(inputs.runs-on-array) || inputs.runs-on }}
-    # runs-on: ${{ inputs.runs-on }}
+  test-playwright-comment:
+    name: Playwright Comment
+    runs-on: ubuntu-latest
     steps:
-      - name: Debug inputs
-        run: |
-          echo "runs-on input: '${{ inputs.runs-on }}'"
-          echo "runs-on-array input: '${{ inputs.runs-on-array }}'"
-          echo "fromJson result: '${{ inputs.runs-on-array && fromJson(inputs.runs-on-array) }}'"
-        shell: bash
-      - name: test
-        run: |
-          echo "test"
-        shell: bash
+    - name: Comment Playwright Report Summary on PR
+      if: ${{ always() && github.event_name == 'pull_request' }}
+      uses: daun/playwright-report-summary@v3
+      with:
+        report-file: results.json
