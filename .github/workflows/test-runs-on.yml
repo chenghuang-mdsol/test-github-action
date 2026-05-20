@@ -5,6 +5,9 @@ jobs:
     name: Playwright Comment
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
     - name: Comment Playwright Report Summary on PR
       if: ${{ always() && github.event_name == 'pull_request' }}
       uses: daun/playwright-report-summary@v3
