@@ -13,3 +13,7 @@ jobs:
       uses: daun/playwright-report-summary@v3
       with:
         report-file: results.json
+        footer: |
+          <details ><summary><strong>Flaky tests</strong></summary>
+          [see our readme](http://link)
+          </details>
