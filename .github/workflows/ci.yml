@@ -1,20 +1,18 @@
-name: Test Matrix UI
+name: Test Check Artifacts
 
 on:
   workflow_dispatch:
-
 jobs:
-  matrix-job:
-    name: Playwright tests
+  check:
+    outputs:
+      status: ${{ steps.existance-check.outputs.artifact_exists }}
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        shard: [1, 2, 3, 4, 5]
-
+    name: Download and deploy artifact for some application
     steps:
-      - name: Show shard
-        run: |
-          echo "Running shard ${{ matrix.shard }}"
-          sleep 15
+      - id: existance-check
+        uses: telia-actions/check-artifact-existence-in-jfrog@v1
+        with:
+          jfrog-repo-name: 'https://mdsol.jfrog.io'
+          jfrog-username: ${{ secrets.ARTIFACTORY_PREPROD_USERNAME }}
+          jfrog-password: ${{ secrets.ARTIFACTORY_PREPROD_PASSWORD }}
+          search-phrase: raveedc-generic-preprod-local/artifacts/apps/raveedc/*cc27c659*/
