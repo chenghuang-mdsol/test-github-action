@@ -5,14 +5,27 @@ on:
 jobs:
   check:
     outputs:
-      status: ${{ steps.existance-check.outputs.artifact_exists }}
+      search-exist: ${{ steps.search.outputs.exists }}
     runs-on: ubuntu-latest
     name: Download and deploy artifact for some application
     steps:
-      - id: existance-check
-        uses: telia-actions/check-artifact-existence-in-jfrog@v1
-        with:
-          jfrog-repo-name: 'https://mdsol.jfrog.io'
-          jfrog-username: ${{ secrets.ARTIFACTORY_PREPROD_USERNAME }}
-          jfrog-password: ${{ secrets.ARTIFACTORY_PREPROD_PASSWORD }}
-          search-phrase: raveedc-generic-preprod-local/artifacts/apps/raveedc/*cc27c659*/
+      - name: Setup JFrog Artifactory CLI
+        uses: jfrog/setup-jfrog-cli@v4
+        env:
+          JF_URL: https://mdsol.jfrog.io
+          JF_ACCESS_TOKEN: ${{ secrets.ARTIFACTORY_PREPROD_PASSWORD }}
+      - id: search
+        name: Search artifacts
+        run: |
+          jfrog rt s "raveedc-generic-preprod-local:artifacts/apps/raveedc/*390cfc97*/" --count
+          $exists = [int]$count -gt 0
+          "count=$count" >> $env:GITHUB_OUTPUT
+          "exists=$($exists.ToString().ToLower())" >> $env:GITHUB_OUTPUT
+        shell: pwsh
+
+      - name: Found artifact
+        if: steps.search.outputs.exists == 'true'
+        run: echo "Artifact exists"
+
+      - name: Print count
+        run: echo "${{ steps.search.outputs.count }}"
