@@ -19,8 +19,8 @@ jobs:
         run: |
           jfrog rt s "raveedc-generic-preprod-local/artifacts/apps/raveedc/*390cfc97*/" --count
           $exists = [int]$count -gt 0
-          "count=$count" >> $env:GITHUB_OUTPUT
-          "exists=$($exists.ToString().ToLower())" >> $env:GITHUB_OUTPUT
+          "count=$count" | Add-Content -Path $env:GITHUB_OUTPUT
+          "exists=$($exists.ToString().ToLower())" | Add-Content -Path $env:GITHUB_OUTPUT
         shell: pwsh
 
       - name: Found artifact
