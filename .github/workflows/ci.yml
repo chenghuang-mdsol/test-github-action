@@ -17,7 +17,7 @@ jobs:
       - id: search
         name: Search artifacts
         run: |
-          jfrog rt s "raveedc-generic-preprod-local/artifacts/apps/raveedc/*390cfc97*/" --count
+          $count = jfrog rt s "raveedc-generic-preprod-local/artifacts/apps/raveedc/*390cfc97*/" --count
           $exists = [int]$count -gt 0
           "count=$count" | Add-Content -Path $env:GITHUB_OUTPUT
           "exists=$($exists.ToString().ToLower())" | Add-Content -Path $env:GITHUB_OUTPUT
