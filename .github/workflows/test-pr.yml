@@ -1,0 +1,40 @@
+name: Checkbox Test
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - edited
+
+jobs:
+  checkbox:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Dump PR body
+        shell: pwsh
+        run: |
+          $event = Get-Content $env:GITHUB_EVENT_PATH -Raw | ConvertFrom-Json
+
+          Write-Host "=== PR BODY ==="
+          Write-Host $event.pull_request.body
+          Write-Host "==============="
+
+      - name: Check checkbox
+        shell: pwsh
+        run: |
+          $event = Get-Content $env:GITHUB_EVENT_PATH -Raw | ConvertFrom-Json
+          $body = $event.pull_request.body
+
+          $runE2E = $body -match '(?im)^-\s*\[x\]\s*Run Cypher E2E Tests\s*$'
+
+          if ($runE2E)
+          {
+            Write-Host "✅ Checkbox is checked"
+          }
+          else
+          {
+            Write-Host "❌ Checkbox is NOT checked"
+          }
