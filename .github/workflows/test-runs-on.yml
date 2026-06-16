@@ -5,8 +5,15 @@ jobs:
     name: Playwright Comment
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
     - name: Comment Playwright Report Summary on PR
       if: ${{ always() && github.event_name == 'pull_request' }}
       uses: daun/playwright-report-summary@v3
       with:
         report-file: results.json
+        footer: |
+          -----
+          ### Artifactory Reports
+          [Report](raveedc-metadata-preprod-local/ci/reports/cypher/${{ github.sha }}/${{ github.run_number}}/ravecypher)
