@@ -1,0 +1,35 @@
+name: E2E reusable
+
+on:
+  workflow_call:
+    inputs:
+      project:
+        required: true
+        type: string
+      shard-total:
+        required: true
+        type: number
+
+jobs:
+  test:
+    name: ${{ inputs.project }} shard ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show expanded job
+        run: |
+          echo "project=${{ inputs.project }}"
+          echo "shard=${{ matrix.shard }}"
+          echo "shard_total=${{ inputs.shard-total }}"
+
+      - name: Run test
+        run: |
+          echo "Run ${{ inputs.project }} shard ${{ matrix.shard }}/${{ inputs.shard-total }}"
+          # npx playwright test --project=${{ inputs.project }} --shard=${{ matrix.shard }}/${{ inputs.shard-total }}

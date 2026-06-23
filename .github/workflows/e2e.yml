@@ -1,0 +1,19 @@
+name: E2E
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  e2e:
+    name: e2e-${{ matrix.project }}
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [edc, legion, rds]
+
+    uses: ./.github/workflows/e2e-reusable.yml
+    with:
+      project: ${{ matrix.project }}
+      shard-total: 4
+    secrets: inherit
